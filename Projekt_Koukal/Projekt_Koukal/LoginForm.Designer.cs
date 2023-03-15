@@ -1,6 +1,6 @@
 ﻿namespace Projekt_Koukal
 {
-    partial class FormLogin
+    partial class LoginForm
     {
         /// <summary>
         /// Required designer variable.
@@ -37,14 +37,14 @@
             // 
             // txtbUsername
             // 
-            this.txtbUsername.Location = new System.Drawing.Point(66, 63);
+            this.txtbUsername.Location = new System.Drawing.Point(15, 63);
             this.txtbUsername.Name = "txtbUsername";
             this.txtbUsername.Size = new System.Drawing.Size(205, 23);
             this.txtbUsername.TabIndex = 0;
             // 
             // txtbPassword
             // 
-            this.txtbPassword.Location = new System.Drawing.Point(66, 110);
+            this.txtbPassword.Location = new System.Drawing.Point(15, 110);
             this.txtbPassword.Name = "txtbPassword";
             this.txtbPassword.PasswordChar = '☺';
             this.txtbPassword.Size = new System.Drawing.Size(205, 23);
@@ -52,7 +52,7 @@
             // 
             // btnLogin
             // 
-            this.btnLogin.Location = new System.Drawing.Point(129, 174);
+            this.btnLogin.Location = new System.Drawing.Point(80, 174);
             this.btnLogin.Name = "btnLogin";
             this.btnLogin.Size = new System.Drawing.Size(75, 23);
             this.btnLogin.TabIndex = 2;
@@ -72,7 +72,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(66, 92);
+            this.label2.Location = new System.Drawing.Point(99, 92);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(37, 15);
             this.label2.TabIndex = 4;
@@ -82,13 +82,14 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(356, 320);
+            this.ClientSize = new System.Drawing.Size(237, 230);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.btnLogin);
             this.Controls.Add(this.txtbPassword);
             this.Controls.Add(this.txtbUsername);
             this.Name = "FormLogin";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "FormLogin";
             this.ResumeLayout(false);
             this.PerformLayout();

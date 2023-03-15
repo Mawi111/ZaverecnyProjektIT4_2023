@@ -10,11 +10,11 @@ using System.Windows.Forms;
 
 namespace Projekt_Koukal
 {
-    public partial class FormLogin : Form
+    public partial class LoginForm : Form
     {
         private User user { get; set; }
         private SqlRepository sqlRepository;
-        public FormLogin()
+        public LoginForm()
         {
             InitializeComponent();
             sqlRepository = new SqlRepository(@"Data Source=(localdb)\\MSSQLLocalDB;Initial Catalog=ProjectDB;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False");

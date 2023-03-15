@@ -11,12 +11,13 @@ namespace Projekt_Koukal
 {
     internal class SqlRepository
     {
-        string connection;
+        public string Connection { get; set; }
 
-        public SqlRepository(string connection)
+        public SqlRepository()
         {
-            this.connection = connection;
+            connection = @"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=ProjectDB;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False";
         }
+
         public void Login(string userName, string password)
         {
             if (userName != null || password != null)
