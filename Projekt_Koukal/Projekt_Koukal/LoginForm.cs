@@ -29,8 +29,8 @@ namespace Projekt_Koukal
                 {
                     if (user.VerifyPwd(txtbPassword.Text))
                     {
-                        MainAdminForm2 form1 = new MainAdminForm2(user, this);
-                        form1.Show();
+                        AdminForm adminForm = new AdminForm(user, this);
+                        adminForm.Show();
                         this.Hide();
                     }
                     else

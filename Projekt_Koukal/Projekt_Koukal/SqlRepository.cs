@@ -33,7 +33,7 @@ namespace Projekt_Koukal
                     {
                         if (reader.Read())
                         {
-                            user = new User(reader["Username"].ToString(), (string)reader["Password"] , (byte[])reader["PswHas"], (byte[])reader["PswSalt"]);
+                            user = new User(reader["Username"].ToString(), (byte[])reader["Password"] , (byte[])reader["PswHas"], (byte[])reader["PswSalt"]);
                         }
                         else
                         {

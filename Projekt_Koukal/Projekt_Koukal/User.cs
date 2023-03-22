@@ -14,13 +14,13 @@ namespace Projekt_Koukal
         public int IdUser { get; set; }
         public int Role { get; set; }
         public string Username { get; set; }
-        public string Password {get; set;}
+        public byte[] Password {get; set;}
         public byte[] PswSalt { get; set; }
         public byte[] PswHash { get; set; }
         public int IdEmployee { get; set; }
         
 
-        public User(string username, string password ,byte[] pswHash, byte[] pswSalt)
+        public User(string username, byte[] password ,byte[] pswHash, byte[] pswSalt)
         {
             Username = username;
             Password = password;
