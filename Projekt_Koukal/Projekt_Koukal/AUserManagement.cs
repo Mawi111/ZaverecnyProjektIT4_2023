@@ -43,13 +43,14 @@ namespace Projekt_Koukal
 
         private void btnAdd_Click(object sender, EventArgs e)
         {
-
+            AdminUserAdd adminUserAdd = new AdminUserAdd();
+            adminUserAdd.ShowDialog();
         }
 
         private void btnEdit_Click(object sender, EventArgs e)
         {
             var id = Convert.ToInt32(lvAUManager.SelectedItems[0].SubItems[2].Text);
-            AUserManagement aUserManagement = new AUserManagement(id, this);
+            AUserManagement aUserManagement = new /*User edit*/(id, this);
             aUserManagement.ShowDialog();
         }
     }
