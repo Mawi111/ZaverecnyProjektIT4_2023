@@ -17,36 +17,37 @@ namespace Projekt_Koukal
         public LoginForm()
         {
             InitializeComponent();
-            sqlRepository = new SqlRepository(@"Data Source=(localdb)\\MSSQLLocalDB;Initial Catalog=ProjectDB;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False");
+            sqlRepository = new SqlRepository();
         }
 
         private void btnLogin_Click(object sender, EventArgs e)
         {
-            if (txtbPassword.Text == " " && txtbUsername.Text == " ")
+            if (txtbUsername.Text != "" && txtbPassword.Text != "")
             {
-                MessageBox.Show("Jméno nebo heslo je špatně.");
-            }
-            else
-            {
-                user = sqlRepository.GetUser(txtbUsername.Text);
-                if (user != null )
+                User user = sqlRepository.GetUser(txtbUsername.Text);
+                if (user != null)
                 {
-                    if (user.CheckPsw(txtbPassword.Text))
+                    if (user.VerifyPwd(txtbPassword.Text))
                     {
-                        Form1 Form1 = new Form1(user);
-                        Form1.Show();
+                        MainAdminForm2 form1 = new MainAdminForm2(user, this);
+                        form1.Show();
                         this.Hide();
                     }
                     else
                     {
-                        MessageBox.Show("Nikdo takový neexistuje");
+                        MessageBox.Show("Heslo není správné!");
                     }
                 }
                 else
                 {
-                    MessageBox.Show("Jméno nebo heslo je  špatně");
+                    MessageBox.Show("Uživatel neexistuje!");
                 }
             }
+            else
+            {
+                MessageBox.Show("Nevyplnil jste heslo nebo uživatelské jméno!");
+            }
+
         }
     }
 }
