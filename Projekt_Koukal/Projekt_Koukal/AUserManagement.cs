@@ -51,7 +51,7 @@ namespace Projekt_Koukal
         {
             var id = Convert.ToInt32(lvAUManager.SelectedItems[0].SubItems[2].Text);
             AUserManagement aUserManagement = new /*User edit*/(id, this);
-            aUserManagement.ShowDialog();
+            aUserManagement.ShowDialog(); 
         }
     }
 }
