@@ -19,6 +19,40 @@ namespace Projekt_Koukal
             Connection = @"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=ProjectDB;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False";
         }
 
+        public void AddUser(string userName, int idEmployee, int role, byte[] password, byte[] passwordSalt)
+        {
+            using (SqlConnection conn = new SqlConnection(Connection))
+            {
+                conn.Open();
+                using (SqlCommand cmd = conn.CreateCommand())
+                {
+                    cmd.CommandText = "insert into Users values (@idEmployee,@userName,@password,@passwordSalt,@role)";
+                    cmd.Parameters.AddWithValue("userName", userName);
+                    cmd.Parameters.AddWithValue("idEmployee", idEmployee);
+                    cmd.Parameters.AddWithValue("password", password);
+                    cmd.Parameters.AddWithValue("passwordSalt", passwordSalt);
+                    cmd.Parameters.AddWithValue("role", role);
+                    cmd.ExecuteNonQuery();
+                }
+                conn.Close();
+            }
+        }
+
+        public void DeleteUser(int idUser)
+        {
+            using (SqlConnection conn = new SqlConnection(Connection))
+            {
+                conn.Open();
+                using (SqlCommand cmd = conn.CreateCommand())
+                {
+                    cmd.CommandText = "delete from Users where IdUser=@idUser";
+                    cmd.Parameters.AddWithValue("idUser", idUser);
+                    cmd.ExecuteNonQuery();
+                }
+                conn.Close();
+            }
+        }
+
         public User GetUser(string userName)
         {
             User user = null;
@@ -33,7 +67,7 @@ namespace Projekt_Koukal
                     {
                         if (reader.Read())
                         {
-                            user = new User(reader["Username"].ToString(), (byte[])reader["Password"] , (byte[])reader["PswHas"], (byte[])reader["PswSalt"]);
+                            user = new User(reader["UserName"].ToString(), Convert.ToInt32(reader["IdUser"]), (byte[])reader["Password"], (byte[])reader["PasswordSalt"], Convert.ToInt32(reader["Role"]));
                         }
                         else
                         {
@@ -60,17 +94,47 @@ namespace Projekt_Koukal
                     {
                         if (reader.Read())
                         {
-                            user = new User(Convert.ToInt32(reader["IdUser"]), Convert.ToString(reader["Username"]), Convert.ToInt32(reader["IdEmployee"]), Convert.ToInt32(reader["Role"]));
+                            user = new User(Convert.ToInt32(reader["IdUser"]), Convert.ToString(reader["UserName"]), Convert.ToInt32(reader["IdEmployee"]), Convert.ToInt32(reader["Role"]));
                         }
                         else
                         {
-                            MessageBox.Show("Uživatel neexistuje!");
+                            MessageBox.Show("Uživatel s takovýmto uživatelským jménem neexistuje!");
                         }
                     }
                 }
                 conn.Close();
             }
             return user;
+        }
+
+        public bool IsUsered(int id)
+        {
+            User user = null;
+            using (SqlConnection conn = new SqlConnection(Connection))
+            {
+                conn.Open();
+                using (SqlCommand cmd = conn.CreateCommand())
+                {
+                    cmd.CommandText = "select * from Users where IdEmployee=@idEmployee";
+                    cmd.Parameters.AddWithValue("idEmployee", id);
+                    using (SqlDataReader reader = cmd.ExecuteReader())
+                    {
+                        if (reader.Read())
+                        {
+                            user = new User(Convert.ToInt32(reader["IdUser"]));
+                        }
+                    }
+                }
+                conn.Close();
+            }
+            if (user != null)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
         }
 
         public List<User> GetUsers()
@@ -108,13 +172,35 @@ namespace Projekt_Koukal
                     {
                         while (reader.Read())
                         {
-                            roles.Add(new Role(reader["Name"].ToString()));
+                            roles.Add(new Role(reader["Name"].ToString(), Convert.ToInt32(reader["IdRole"])));
                         }
                     }
                 }
                 conn.Close();
             }
             return roles;
+        }
+
+        public List<Employee> GetEmployees()
+        {
+            List<Employee> employees = new List<Employee>();
+            using (SqlConnection conn = new SqlConnection(Connection))
+            {
+                conn.Open();
+                using (SqlCommand cmd = conn.CreateCommand())
+                {
+                    cmd.CommandText = "select * from Employees";
+                    using (SqlDataReader reader = cmd.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            employees.Add(new Employee(Convert.ToInt32(reader["IdEmployee"]), reader["FirstName"].ToString(), reader["LastName"].ToString()));
+                        }
+                    }
+                }
+                conn.Close();
+            }
+            return employees;
         }
 
         public Employee GetEmployee(int idEmployee)
@@ -131,7 +217,7 @@ namespace Projekt_Koukal
                     {
                         if (reader.Read())
                         {
-                            employee = new Employee(reader["FirstName"].ToString(), reader["LastName"].ToString());
+                            employee = new Employee(Convert.ToInt32(reader["IdEmployee"]), reader["FirstName"].ToString(), reader["LastName"].ToString());
                         }
                         else
                         {
@@ -158,7 +244,7 @@ namespace Projekt_Koukal
                     {
                         if (reader.Read())
                         {
-                            role = new Role(reader["Name"].ToString());
+                            role = new Role(reader["Name"].ToString(), 0);
                         }
                         else
                         {
@@ -185,7 +271,7 @@ namespace Projekt_Koukal
                     {
                         if (reader.Read())
                         {
-                            role = new Role(Convert.ToInt32(reader["IdRole"]));
+                            role = new Role(null, Convert.ToInt32(reader["IdRole"]));
                         }
                         else
                         {
@@ -216,6 +302,23 @@ namespace Projekt_Koukal
         }
 
         public void ResetUserPassword(int idUser, byte[] password, byte[] passwordSalt)
+        {
+            using (SqlConnection conn = new SqlConnection(Connection))
+            {
+                conn.Open();
+                using (SqlCommand cmd = conn.CreateCommand())
+                {
+                    cmd.CommandText = "update Users set Password=@password,PasswordSalt=@passwordSalt where IdUser=@idUser";
+                    cmd.Parameters.AddWithValue("password", password);
+                    cmd.Parameters.AddWithValue("passwordSalt", passwordSalt);
+                    cmd.Parameters.AddWithValue("idUser", idUser);
+                    cmd.ExecuteNonQuery();
+                }
+                conn.Close();
+            }
+        }
+
+        public void ChangeUserPassword(int idUser, byte[] password, byte[] passwordSalt)
         {
             using (SqlConnection conn = new SqlConnection(Connection))
             {

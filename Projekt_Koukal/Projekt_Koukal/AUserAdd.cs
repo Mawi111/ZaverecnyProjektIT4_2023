@@ -42,13 +42,13 @@ namespace Projekt_Koukal
 
         private void btnEditOk_Click(object sender, EventArgs e)
         {
-            if (txtAdminAddUsername.Text != null && cboEmployees.Text != null && cboRoles.Text != null)
+            if (txtAAddUser.Text != null && cbEmployee.Text != null && cbRole.Text != null)
             {
-                var idEmployee = cboEmployees.Text.Split('-');
-                var user = new User(txtAdminAddUsername.Text);
-                var role = sqlRepository.GetRole(cboRoles.Text);
+                var idEmployee = cbEmployee.Text.Split('-');
+                var user = new User(txtAAddUser.Text);
+                var role = sqlRepository.GetRole(cbRole.Text);
                 user.ResetPassword();
-                sqlRepository.AddUser(user.UserName, Convert.ToInt32(idEmployee[1].Trim()), role.Id, user.Password, user.PasswordSalt);
+                sqlRepository.AddUser(user.Username, Convert.ToInt32(idEmployee[1].Trim()), role.Id, user.Password, user.PasswordSalt);
                 ParentForm.LoadData();
                 Close();
                 MessageBox.Show("Uživatel úspěšně přidán!");
