@@ -36,5 +36,10 @@ namespace Projekt_Koukal
         {
             Form.Close();
         }
+
+        private void btnRoleA_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

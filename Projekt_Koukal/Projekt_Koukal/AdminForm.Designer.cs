@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.btnUserMa = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
+            this.btnRoleA = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
             this.button4 = new System.Windows.Forms.Button();
             this.button5 = new System.Windows.Forms.Button();
@@ -47,14 +47,15 @@
             this.btnUserMa.UseVisualStyleBackColor = true;
             this.btnUserMa.Click += new System.EventHandler(this.btnUserMa_Click);
             // 
-            // button2
+            // btnRoleA
             // 
-            this.button2.Location = new System.Drawing.Point(205, 194);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(141, 61);
-            this.button2.TabIndex = 1;
-            this.button2.Text = "button2";
-            this.button2.UseVisualStyleBackColor = true;
+            this.btnRoleA.Location = new System.Drawing.Point(205, 194);
+            this.btnRoleA.Name = "btnRoleA";
+            this.btnRoleA.Size = new System.Drawing.Size(141, 61);
+            this.btnRoleA.TabIndex = 1;
+            this.btnRoleA.Text = "ROLE";
+            this.btnRoleA.UseVisualStyleBackColor = true;
+            this.btnRoleA.Click += new System.EventHandler(this.btnRoleA_Click);
             // 
             // button3
             // 
@@ -112,7 +113,7 @@
             this.Controls.Add(this.button5);
             this.Controls.Add(this.button4);
             this.Controls.Add(this.button3);
-            this.Controls.Add(this.button2);
+            this.Controls.Add(this.btnRoleA);
             this.Controls.Add(this.btnUserMa);
             this.Name = "AdminForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
@@ -126,7 +127,7 @@
         #endregion
 
         private Button btnUserMa;
-        private Button button2;
+        private Button btnRoleA;
         private Button button3;
         private Button button4;
         private Button button5;
