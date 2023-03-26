@@ -1,6 +1,6 @@
 ﻿namespace Projekt_Koukal
 {
-    partial class AUserManagement
+    partial class ARoleControl
     {
         /// <summary>
         /// Required designer variable.

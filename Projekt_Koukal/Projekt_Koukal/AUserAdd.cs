@@ -13,8 +13,8 @@ namespace Projekt_Koukal
     public partial class AUserAdd : Form
     {
         SqlRepository sqlRepository;
-        public AUserManagement aUserManagement { get; set; }
-        public AUserAdd(AUserManagement parent)
+        public ARoleControl aUserManagement { get; set; }
+        public AUserAdd(ARoleControl parent)
         {
             InitializeComponent();
             sqlRepository= new SqlRepository();

@@ -28,7 +28,7 @@ namespace Projekt_Koukal
 
         private void btnUserMa_Click(object sender, EventArgs e)
         {
-            AUserManagement aUserManagement = new AUserManagement();
+            ARoleControl aUserManagement = new AUserManagement();
             aUserManagement.ShowDialog();
         }
 

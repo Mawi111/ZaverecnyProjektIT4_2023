@@ -10,10 +10,10 @@ using System.Windows.Forms;
 
 namespace Projekt_Koukal
 {
-    public partial class AUserManagement : Form
+    public partial class ARoleControl : Form
     {
         SqlRepository sqlRepository;
-        public AUserManagement()
+        public ARoleControl()
         {
             InitializeComponent();
             SqlRepository sqlRepository = new SqlRepository();
@@ -51,7 +51,7 @@ namespace Projekt_Koukal
         private void btnEdit_Click(object sender, EventArgs e)
         {
             var id = Convert.ToInt32(lvAUManager.SelectedItems[0].SubItems[2].Text);
-            AUserManagement aUserManagement = new /*User edit*/(id, this);
+            ARoleControl aUserManagement = new /*User edit*/(id, this);
             aUserManagement.ShowDialog();  
         }
     }
