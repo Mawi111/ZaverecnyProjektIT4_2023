@@ -99,6 +99,7 @@
             this.Controls.Add(this.lvRoleChanger);
             this.Name = "ARoleControlForm";
             this.Text = "ARoleControlForm";
+            this.Load += new System.EventHandler(this.ARoleControlForm_Load);
             this.ResumeLayout(false);
 
         }

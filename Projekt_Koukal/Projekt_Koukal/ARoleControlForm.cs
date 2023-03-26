@@ -20,6 +20,16 @@ namespace Projekt_Koukal
             sqlRepository = new SqlRepository();
         }
 
+        public void LoadData()
+        {
+            lvRoleChanger.Items.Clear();
+            var roles = sqlRepository.GetRoles();
+            foreach (var role in roles)
+            {
+                lvRoleChanger.Items.Add(new ListViewItem(new string[] { role.Name, role.Id.ToString() }));
+            }
+        }
+
         private void btnDeleteRole_Click(object sender, EventArgs e)
         {
 
@@ -33,6 +43,11 @@ namespace Projekt_Koukal
         private void btnRoleAdd_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void ARoleControlForm_Load(object sender, EventArgs e)
+        {
+            LoadData(); 
         }
     }
 }

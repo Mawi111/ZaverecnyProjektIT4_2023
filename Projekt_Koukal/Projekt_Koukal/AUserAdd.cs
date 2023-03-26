@@ -55,7 +55,7 @@ namespace Projekt_Koukal
             }
             else
             {
-                MessageBox.Show("Musítě vyplnit všechna pole!");
+                MessageBox.Show("Musíte vyplnit všechna pole!");
             }
         }
     }
