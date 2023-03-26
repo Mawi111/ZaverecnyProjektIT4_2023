@@ -45,6 +45,7 @@ namespace Projekt_Koukal
         {
             AdminUserAdd adminUserAdd = new AdminUserAdd();
             adminUserAdd.ShowDialog();
+
         }
 
         private void btnEdit_Click(object sender, EventArgs e)
