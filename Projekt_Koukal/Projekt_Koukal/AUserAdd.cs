@@ -14,10 +14,49 @@ namespace Projekt_Koukal
     {
         SqlRepository sqlRepository;
         public AUserManagement aUserManagement { get; set; }
-        public AUserAdd(AUserManagement form);
-        public AUserAdd()
+        public AUserAdd(AUserManagement parent)
         {
             InitializeComponent();
+            sqlRepository= new SqlRepository();
+            aUserManagement = parent;
+        }
+
+        private void AUserAdd_Load(object sender, EventArgs e)
+        {
+            cbEmployee.Items.Clear();
+            var employees = sqlRepository.GetEmployee();
+            foreach (var employee in employees)
+            {
+                if (!sqlRepository.IsUsered(employee.Id))
+                {
+                    cbEmployee.Items.Add(employee.FirstName + " " + employee.LastName + " - " + employee.Id);
+                }
+            }
+            cbRole.Items.Clear();
+            var roles = sqlRepository.GetRoles();
+            foreach (var role in roles)
+            {
+                cbRole.Items.Add(role.Name);
+            }
+        }
+
+        private void btnEditOk_Click(object sender, EventArgs e)
+        {
+            if (txtAdminAddUsername.Text != null && cboEmployees.Text != null && cboRoles.Text != null)
+            {
+                var idEmployee = cboEmployees.Text.Split('-');
+                var user = new User(txtAdminAddUsername.Text);
+                var role = sqlRepository.GetRole(cboRoles.Text);
+                user.ResetPassword();
+                sqlRepository.AddUser(user.UserName, Convert.ToInt32(idEmployee[1].Trim()), role.Id, user.Password, user.PasswordSalt);
+                ParentForm.LoadData();
+                Close();
+                MessageBox.Show("Uživatel úspěšně přidán!");
+            }
+            else
+            {
+                MessageBox.Show("Musítě vyplnit všechna pole!");
+            }
         }
     }
 }
