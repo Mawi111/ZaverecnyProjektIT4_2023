@@ -1,0 +1,28 @@
+NÁZEV DATABÁZE - ProjectDB
+CREATE TABLE [dbo].[Employee] (
+    [IdEmployee]  INT           IDENTITY (0, 1) NOT NULL,
+    [Firstname]   NVARCHAR (25) NOT NULL,
+    [Lastname]    NVARCHAR (25) NOT NULL,
+    [DateOfBirth] DATE          NOT NULL,
+    [Email]       INT           NOT NULL,
+    [Phone]       INT           NOT NULL,
+    CONSTRAINT [PK_Employee] PRIMARY KEY CLUSTERED ([IdEmployee] ASC)
+);
+
+CREATE TABLE [dbo].[Roles] (
+    [IdRole]   INT           IDENTITY (1, 1) NOT NULL,
+    [RoleName] NVARCHAR (50) NOT NULL,
+    PRIMARY KEY CLUSTERED ([IdRole] ASC)
+);
+
+CREATE TABLE [dbo].[Users] (
+    [IdUser]       INT             IDENTITY (0, 1) NOT NULL,
+    [IdEmployee]   INT             NOT NULL,
+    [Role]         INT             NOT NULL,
+    [Username]     NVARCHAR (25)   NOT NULL,
+    [Password]     NVARCHAR (25)   NOT NULL,
+    [PasswordHash] VARBINARY (MAX) NOT NULL,
+    [PasswordSalt] VARBINARY (MAX) NOT NULL,
+    PRIMARY KEY CLUSTERED ([IdUser] ASC),
+    CONSTRAINT [FK_Users_Roles] FOREIGN KEY ([Role]) REFERENCES [dbo].[Roles] ([IdRole])
+);

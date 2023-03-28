@@ -16,10 +16,9 @@ namespace Projekt_Koukal
     {
         SqlRepository sqlRepository;
         public int IdUser { get; set; }
-        public AdminForm ParentForm { get; set; }
-        public AUserEdit(int idUser, AUsersControl parent);
+        public AUserManagement ParentForm { get; set; }
 
-        public AUserEditForm()
+        public AUserEditForm(int idUser, AUserManagement parent)
         {
             InitializeComponent();
             IdUser = IdUser;
@@ -32,7 +31,7 @@ namespace Projekt_Koukal
             if (cbRole.Text != "" && txtAEditUser.Text != "")
             {
                 var role = sqlRepository.GetRole(cbRole.Text);
-                sqlRepository.UpdateUser(txtAEditUser.Text, role.Id, IdUser);
+                sqlRepository.UpdateUser(txtAEditUser.Text, role.IdRole, IdUser);
                 ParentForm.LoadData();
                 this.Close();
                 MessageBox.Show("Uživatel úspěšně změněn");
@@ -48,11 +47,11 @@ namespace Projekt_Koukal
             var user = sqlRepository.GetUser(IdUser);
             txtAEditUser.Text = user.Username;
             var role = sqlRepository.GetRole(user.Role);
-            cbRole.Text = role.Name;
+            cbRole.Text = role.Rolename;
             var roles = sqlRepository.GetRoles();
             foreach (var rol in roles)
             {
-                cbRole.Items.Add(rol.Name);
+                cbRole.Items.Add(rol.Rolename);
             }
         }
     }

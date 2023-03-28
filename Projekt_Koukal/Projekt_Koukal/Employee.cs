@@ -11,9 +11,10 @@ namespace Projekt_Koukal
        
         public string Firstname { get; set; }
         public string Lastname { get; set; }
-        public int Id { get; set; }
-        public Employee(string firstname, string lastname)
+        public int IdEmployee { get; set; }
+        public Employee(int idEmployee, string firstname, string lastname)
         {
+            IdEmployee= idEmployee;
             Firstname = firstname;
             Lastname = lastname;
         }

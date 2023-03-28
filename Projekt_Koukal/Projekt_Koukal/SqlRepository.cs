@@ -25,7 +25,7 @@ namespace Projekt_Koukal
             conn.Open();
             
             SqlCommand cmd = conn.CreateCommand();
-            cmd.CommandText = "insert into Users values (@idEmployee,@userName,@password,@passwordSalt,@role)";
+            cmd.CommandText = "insert into Users values (@idEmployee,@username,@password,@passwordSalt,@role)";
             cmd.Parameters.AddWithValue("userName", userName);
             cmd.Parameters.AddWithValue("idEmployee", idEmployee);
             cmd.Parameters.AddWithValue("password", password);
@@ -58,13 +58,13 @@ namespace Projekt_Koukal
             conn.Open();
             SqlCommand cmd = conn.CreateCommand();
                 
-            cmd.CommandText = "select * from Users where UserName=@userName";
+            cmd.CommandText = "select * from Users where UserName=@username";
             cmd.Parameters.AddWithValue("userName", userName);
             SqlDataReader reader = cmd.ExecuteReader();
             
             if (reader.Read())
             {
-                user = new User(reader["Username"].ToString(), Convert.ToInt32(reader["IdUser"]), (byte[])reader["Password"], (byte[])reader["PasswordSalt"], Convert.ToInt32(reader["Role"]));
+                user = new User(Convert.ToInt32(reader["IdRole"]),Convert.ToInt32(reader["Role"]), reader["Username"].ToString(), (byte[])reader["Password"], (byte[])reader["PwdSalt"]);
             }
             else
             {
@@ -158,7 +158,7 @@ namespace Projekt_Koukal
             
             while (reader.Read())
             {
-                roles.Add(new Role(reader["Rolename"].ToString(), Convert.ToInt32(reader["IdRole"])));
+                roles.Add(new Role(Convert.ToInt32(reader["IdRole"]), Convert.ToString(reader["Rolename"])));
             }
             
             conn.Close();
@@ -210,89 +210,61 @@ namespace Projekt_Koukal
         public Role GetRole(int idRole)
         {
             Role role = null;
-            using (SqlConnection conn = new SqlConnection(Connection))
+            SqlConnection conn = new SqlConnection(Connection);
+            conn.Open();
+            SqlCommand cmd = conn.CreateCommand();
+            
+            cmd.CommandText = "select * from Roles where IdRole=@id";
+            cmd.Parameters.AddWithValue("id", idRole);
+            SqlDataReader reader = cmd.ExecuteReader();
+                    
+            if (reader.Read())
             {
-                conn.Open();
-                using (SqlCommand cmd = conn.CreateCommand())
-                {
-                    cmd.CommandText = "select * from Roles where IdRole=@id";
-                    cmd.Parameters.AddWithValue("id", idRole);
-                    using (SqlDataReader reader = cmd.ExecuteReader())
-                    {
-                        if (reader.Read())
-                        {
-                            role = new Role(reader["Rolename"].ToString(), 0);
-                        }
-                        else
-                        {
-                            MessageBox.Show("Role s takovýmto identifikačním číslem neexistuje!");
-                        }
-                    }
-                }
-                conn.Close();
+                role = new Role(idRole,Convert.ToString(reader["Rolename"]));
             }
+            else
+            {
+                MessageBox.Show("Taková role neexistuje");
+            } 
+            conn.Close();
             return role;
         }
 
-        public Role GetRole(string roleName)
+        public Role GetRole(string rolename)
         {
             Role role = null;
-            using (SqlConnection conn = new SqlConnection(Connection))
+            SqlConnection conn = new SqlConnection(Connection);
+            conn.Open();
+            SqlCommand cmd = conn.CreateCommand();
+            cmd.CommandText = "select * from Roles where Name=@rolename";
+            cmd.Parameters.AddWithValue("roleName", rolename);
+            
+            SqlDataReader reader = cmd.ExecuteReader();
+                 
+            if (reader.Read())
             {
-                conn.Open();
-                using (SqlCommand cmd = conn.CreateCommand())
-                {
-                    cmd.CommandText = "select * from Roles where Name=@roleName";
-                    cmd.Parameters.AddWithValue("roleName", roleName);
-                    using (SqlDataReader reader = cmd.ExecuteReader())
-                    {
-                        if (reader.Read())
-                        {
-                            role = new Role(null, Convert.ToInt32(reader["IdRole"]));
-                        }
-                        else
-                        {
-                            MessageBox.Show("Role s takovýmto názvem neexistuje!");
-                        }
-                    }
-                }
-                conn.Close();
+                role = new Role(Convert.ToInt32(reader["IdRole"]), rolename);
             }
+            else
+            {
+                MessageBox.Show("Role s takovýmto názvem neexistuje!");
+            }
+            conn.Close();
             return role;
         }
 
-        public void UpdateUser(string userName, int idRole, int idUser)
+        public void UpdateUser(string username, int idRole, int idUser)
         {
-            using (SqlConnection conn = new SqlConnection(Connection))
-            {
-                conn.Open();
-                using (SqlCommand cmd = conn.CreateCommand())
-                {
-                    cmd.CommandText = "update Users set UserName=@userName,Role=@idRole where IdUser=@idUser";
-                    cmd.Parameters.AddWithValue("userName", userName);
-                    cmd.Parameters.AddWithValue("idRole", idRole);
-                    cmd.Parameters.AddWithValue("idUser", idUser);
-                    cmd.ExecuteNonQuery();
-                }
-                conn.Close();
-            }
-        }
+            SqlConnection conn = new SqlConnection(Connection);
+            conn.Open();
 
-        public void ChangeUserPassword(int idUser, byte[] password, byte[] passwordSalt)
-        {
-            using (SqlConnection conn = new SqlConnection(Connection))
-            {
-                conn.Open();
-                using (SqlCommand cmd = conn.CreateCommand())
-                {
-                    cmd.CommandText = "update Users set Password=@password,PasswordSalt=@passwordSalt where IdUser=@idUser";
-                    cmd.Parameters.AddWithValue("password", password);
-                    cmd.Parameters.AddWithValue("passwordSalt", passwordSalt);
-                    cmd.Parameters.AddWithValue("idUser", idUser);
-                    cmd.ExecuteNonQuery();
-                }
-                conn.Close();
-            }
+            SqlCommand cmd = conn.CreateCommand();
+            cmd.CommandText = "update Users set Username=@username, IdRole=@idRole where IdUser=@idUser";
+            cmd.Parameters.AddWithValue("idUser", idUser);
+            cmd.Parameters.AddWithValue("username", username);
+            cmd.Parameters.AddWithValue("role", idRole);
+            cmd.ExecuteNonQuery();
+            conn.Close();   
         }
     }
 }

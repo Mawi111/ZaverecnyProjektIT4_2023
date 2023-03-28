@@ -36,7 +36,7 @@ namespace Projekt_Koukal
             var roles = sqlRepository.GetRoles();
             foreach (var role in roles)
             {
-                cbRole.Items.Add(role.Name);
+                cbRole.Items.Add(role.Rolename);
             }
         }
 
@@ -47,8 +47,7 @@ namespace Projekt_Koukal
                 var idEmployee = cbEmployee.Text.Split('-');
                 var user = new User(txtAAddUser.Text);
                 var role = sqlRepository.GetRole(cbRole.Text);
-                user.ResetPassword();
-                sqlRepository.AddUser(user.Username, Convert.ToInt32(idEmployee[1].Trim()), role.Id, user.Password, user.PasswordSalt);
+                sqlRepository.AddUser(user.Username, Convert.ToInt32(idEmployee[1].Trim()), role.IdRole, user.Password, user.PswSalt);
                 ParentForm.LoadData();
                 Close();
                 MessageBox.Show("Uživatel úspěšně přidán!");

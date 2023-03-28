@@ -34,14 +34,20 @@ namespace Projekt_Koukal
             IdUser = id;
             Role = role;
         }
-        public void ResetPwd()
+
+        public User(int idUser, int role, string username, byte[] password, byte[] pswSalt) : this(idUser)
         {
-            using (var hmac = new HMACSHA512())
-            {
-                PswSalt = hmac.Key;
-                PswHash = hmac.ComputeHash(Encoding.UTF8.GetBytes("123"));
-            }
+            Role = role;
+            Username = username;
+            Password = password;
+            PswSalt = pswSalt;
         }
+
+        public User(int idUser)
+        {
+            IdUser = idUser;
+        }
+
         public bool VerifyPwd(string text)
         {
             byte[] hash;
@@ -50,6 +56,20 @@ namespace Projekt_Koukal
                 hash = hmac.ComputeHash(Encoding.UTF8.GetBytes(text));
             }
             return hash.SequenceEqual(Password);
+        }
+
+        private void HashPassword(string password)
+        {
+            using (var hmac = new HMACSHA512())
+            {
+                PswSalt = hmac.Key;
+                Password = hmac.ComputeHash(Encoding.UTF8.GetBytes(password));
+            }
+        }
+
+        public void ChangePassword(string password)
+        {
+            HashPassword(password);
         }
     }
 }

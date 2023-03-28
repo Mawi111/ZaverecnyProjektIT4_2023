@@ -27,7 +27,7 @@ namespace Projekt_Koukal
             {
                 var employee = sqlRepository.GetEmployee(user.IdEmployee);
                 var role = sqlRepository.GetRole(user.Role);
-                lvAUManager.Items.Add(new ListViewItem(new string[] { employee.Firstname + " " + employee.Lastname, user.Username, user.IdUser.ToString(), role.Name.ToString() }));
+                lvAUManager.Items.Add(new ListViewItem(new string[] { employee.Firstname + " " + employee.Lastname, user.Username, user.IdUser.ToString(), role.Rolename.ToString() }));
             }
         }
 
@@ -52,8 +52,8 @@ namespace Projekt_Koukal
         private void btnEdit_Click(object sender, EventArgs e)
         {
             var id = Convert.ToInt32(lvAUManager.SelectedItems[0].SubItems[2].Text);
-            AUserManagement aUserManagement = new AUserEditForm(id, this);
-            aUserManagement.ShowDialog();  
+            AUserEditForm aUserEditForm = new AUserEditForm(id, this);
+            aUserEditForm.ShowDialog();
         }
     }
 }

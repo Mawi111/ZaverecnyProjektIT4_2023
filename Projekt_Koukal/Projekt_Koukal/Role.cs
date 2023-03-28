@@ -10,15 +10,13 @@ namespace Projekt_Koukal
     {
         public string Rolename { get; set; }
         public int IdRole { get; set; }
-        public Role(string name)
+        public Role(int idRole, string name)
         {
+            IdRole = idRole;
             Rolename = name;
         }
 
-        public Role(int id)
-        {
-            IdRole = id;
-        }
+       
 
         
     }
