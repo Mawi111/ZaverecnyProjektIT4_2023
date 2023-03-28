@@ -17,6 +17,7 @@ namespace Projekt_Koukal
         SqlRepository sqlRepository;
         public int IdUser { get; set; }
         public AdminForm ParentForm { get; set; }
+        public AUserEdit(int idUser, AUsersControl parent);
 
         public AUserEditForm()
         {

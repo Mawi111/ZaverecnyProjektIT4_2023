@@ -13,33 +13,35 @@ namespace Projekt_Koukal
     public partial class AdminForm : Form
     {
         public User User { get; set; }
-        public Form Form { get; set; }
+        public Form parent { get; set; }
         
         public AdminForm()
         {
             InitializeComponent();
         }
 
-        public  AdminForm(User user, Form form)
+        public  AdminForm(User user, Form parent)
         {
             User = user;
-            Form = form;
+            Parent = parent;
         }
 
         private void btnUserMa_Click(object sender, EventArgs e)
         {
-            ARoleControl aUserManagement = new AUserManagement();
+            AUserManagement aUserManagement = new AUserManagement();
             aUserManagement.ShowDialog();
-        }
-
-        private void AdminForm_FormClosed(object sender, FormClosedEventArgs e)
-        {
-            Form.Close();
         }
 
         private void btnRoleA_Click(object sender, EventArgs e)
         {
+            AUserManagement aRoleControl = new AUserManagement(); 
+            aRoleControl.ShowDialog();
+        }
 
+        private void bntEmployees_Click(object sender, EventArgs e)
+        {
+            AUserManagement aRoleControl = new AUserManagement();
+            aRoleControl.ShowDialog();  
         }
     }
 }

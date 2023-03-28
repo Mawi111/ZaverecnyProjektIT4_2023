@@ -30,7 +30,7 @@
         {
             this.btnUserMa = new System.Windows.Forms.Button();
             this.btnRoleA = new System.Windows.Forms.Button();
-            this.button3 = new System.Windows.Forms.Button();
+            this.bntEmployees = new System.Windows.Forms.Button();
             this.button4 = new System.Windows.Forms.Button();
             this.button5 = new System.Windows.Forms.Button();
             this.button6 = new System.Windows.Forms.Button();
@@ -57,14 +57,15 @@
             this.btnRoleA.UseVisualStyleBackColor = true;
             this.btnRoleA.Click += new System.EventHandler(this.btnRoleA_Click);
             // 
-            // button3
+            // bntEmployees
             // 
-            this.button3.Location = new System.Drawing.Point(205, 300);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(141, 61);
-            this.button3.TabIndex = 2;
-            this.button3.Text = "button3";
-            this.button3.UseVisualStyleBackColor = true;
+            this.bntEmployees.Location = new System.Drawing.Point(205, 300);
+            this.bntEmployees.Name = "bntEmployees";
+            this.bntEmployees.Size = new System.Drawing.Size(141, 61);
+            this.bntEmployees.TabIndex = 2;
+            this.bntEmployees.Text = "ZAMĚSTNANCI";
+            this.bntEmployees.UseVisualStyleBackColor = true;
+            this.bntEmployees.Click += new System.EventHandler(this.bntEmployees_Click);
             // 
             // button4
             // 
@@ -112,7 +113,7 @@
             this.Controls.Add(this.button6);
             this.Controls.Add(this.button5);
             this.Controls.Add(this.button4);
-            this.Controls.Add(this.button3);
+            this.Controls.Add(this.bntEmployees);
             this.Controls.Add(this.btnRoleA);
             this.Controls.Add(this.btnUserMa);
             this.Name = "AdminForm";
@@ -128,7 +129,7 @@
 
         private Button btnUserMa;
         private Button btnRoleA;
-        private Button button3;
+        private Button bntEmployees;
         private Button button4;
         private Button button5;
         private Button button6;

@@ -29,11 +29,11 @@
         private void InitializeComponent()
         {
             this.lvRoleChanger = new System.Windows.Forms.ListView();
+            this.columnHeader1 = new System.Windows.Forms.ColumnHeader();
+            this.columnHeader2 = new System.Windows.Forms.ColumnHeader();
             this.btnDeleteRole = new System.Windows.Forms.Button();
             this.btnRoleUprav = new System.Windows.Forms.Button();
             this.btnRoleAdd = new System.Windows.Forms.Button();
-            this.columnHeader1 = new System.Windows.Forms.ColumnHeader();
-            this.columnHeader2 = new System.Windows.Forms.ColumnHeader();
             this.SuspendLayout();
             // 
             // lvRoleChanger
@@ -48,6 +48,15 @@
             this.lvRoleChanger.TabIndex = 0;
             this.lvRoleChanger.UseCompatibleStateImageBehavior = false;
             this.lvRoleChanger.View = System.Windows.Forms.View.Details;
+            // 
+            // columnHeader1
+            // 
+            this.columnHeader1.Text = "ID";
+            // 
+            // columnHeader2
+            // 
+            this.columnHeader2.Text = "Název";
+            this.columnHeader2.Width = 100;
             // 
             // btnDeleteRole
             // 
@@ -79,15 +88,6 @@
             this.btnRoleAdd.UseVisualStyleBackColor = true;
             this.btnRoleAdd.Click += new System.EventHandler(this.btnRoleAdd_Click);
             // 
-            // columnHeader1
-            // 
-            this.columnHeader1.Text = "ID";
-            // 
-            // columnHeader2
-            // 
-            this.columnHeader2.Text = "Název";
-            this.columnHeader2.Width = 100;
-            // 
             // ARoleControlForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
@@ -98,6 +98,7 @@
             this.Controls.Add(this.btnDeleteRole);
             this.Controls.Add(this.lvRoleChanger);
             this.Name = "ARoleControlForm";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "ARoleControlForm";
             this.Load += new System.EventHandler(this.ARoleControlForm_Load);
             this.ResumeLayout(false);

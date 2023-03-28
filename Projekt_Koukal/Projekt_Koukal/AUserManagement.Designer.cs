@@ -1,6 +1,6 @@
 ﻿namespace Projekt_Koukal
 {
-    partial class ARoleControl
+    partial class AUserManagement
     {
         /// <summary>
         /// Required designer variable.
@@ -29,13 +29,13 @@
         private void InitializeComponent()
         {
             this.lvAUManager = new System.Windows.Forms.ListView();
-            this.btnDelete = new System.Windows.Forms.Button();
-            this.btnAdd = new System.Windows.Forms.Button();
-            this.btnEdit = new System.Windows.Forms.Button();
             this.IdEmployee = new System.Windows.Forms.ColumnHeader();
             this.EmployeeName = new System.Windows.Forms.ColumnHeader();
             this.UserName = new System.Windows.Forms.ColumnHeader();
             this.Role = new System.Windows.Forms.ColumnHeader();
+            this.btnDelete = new System.Windows.Forms.Button();
+            this.btnAdd = new System.Windows.Forms.Button();
+            this.btnEdit = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // lvAUManager
@@ -52,6 +52,24 @@
             this.lvAUManager.TabIndex = 0;
             this.lvAUManager.UseCompatibleStateImageBehavior = false;
             this.lvAUManager.View = System.Windows.Forms.View.Details;
+            // 
+            // IdEmployee
+            // 
+            this.IdEmployee.Text = "ID";
+            // 
+            // EmployeeName
+            // 
+            this.EmployeeName.Text = "Zaměstnanec/kyně";
+            this.EmployeeName.Width = 120;
+            // 
+            // UserName
+            // 
+            this.UserName.Text = "Uživatel";
+            this.UserName.Width = 100;
+            // 
+            // Role
+            // 
+            this.Role.Text = "Role";
             // 
             // btnDelete
             // 
@@ -83,25 +101,7 @@
             this.btnEdit.UseVisualStyleBackColor = true;
             this.btnEdit.Click += new System.EventHandler(this.btnEdit_Click);
             // 
-            // IdEmployee
-            // 
-            this.IdEmployee.Text = "ID";
-            // 
-            // EmployeeName
-            // 
-            this.EmployeeName.Text = "Zaměstnanec/kyně";
-            this.EmployeeName.Width = 120;
-            // 
-            // UserName
-            // 
-            this.UserName.Text = "Uživatel";
-            this.UserName.Width = 100;
-            // 
-            // Role
-            // 
-            this.Role.Text = "Role";
-            // 
-            // AUserManagement
+            // ARoleControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -110,7 +110,8 @@
             this.Controls.Add(this.btnAdd);
             this.Controls.Add(this.btnDelete);
             this.Controls.Add(this.lvAUManager);
-            this.Name = "AUserManagement";
+            this.Name = "ARoleControl";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "AUserManagement";
             this.Load += new System.EventHandler(this.AUserManagement_Load);
             this.ResumeLayout(false);

@@ -10,10 +10,10 @@ using System.Windows.Forms;
 
 namespace Projekt_Koukal
 {
-    public partial class ARoleControl : Form
+    public partial class AUserManagement : Form
     {
         SqlRepository sqlRepository;
-        public ARoleControl()
+        public AUserManagement()
         {
             InitializeComponent();
             SqlRepository sqlRepository = new SqlRepository();
@@ -27,7 +27,7 @@ namespace Projekt_Koukal
             {
                 var employee = sqlRepository.GetEmployee(user.IdEmployee);
                 var role = sqlRepository.GetRole(user.Role);
-                lvAUManager.Items.Add(new ListViewItem(new string[] { employee.FirstName + " " + employee.LastName, user.UserName, user.Id.ToString(), role.Name.ToString() }));
+                lvAUManager.Items.Add(new ListViewItem(new string[] { employee.Firstname + " " + employee.Lastname, user.Username, user.IdUser.ToString(), role.Name.ToString() }));
             }
         }
 
@@ -38,20 +38,21 @@ namespace Projekt_Koukal
 
         private void btnDelete_Click(object sender, EventArgs e)
         {
-
+            sqlRepository.DeleteUser(Convert.ToInt32(lvAUManager.SelectedItems[0].SubItems[2].Text));
+            LoadData();
         }
 
         private void btnAdd_Click(object sender, EventArgs e)
         {
-            AdminUserAdd adminUserAdd = new AdminUserAdd();
-            adminUserAdd.ShowDialog(); 
+            AUserAdd aUserAdd = new AUserAdd(this);
+            aUserAdd.ShowDialog(); 
 
         }
 
         private void btnEdit_Click(object sender, EventArgs e)
         {
             var id = Convert.ToInt32(lvAUManager.SelectedItems[0].SubItems[2].Text);
-            ARoleControl aUserManagement = new /*User edit*/(id, this);
+            AUserManagement aUserManagement = new AUserEditForm(id, this);
             aUserManagement.ShowDialog();  
         }
     }

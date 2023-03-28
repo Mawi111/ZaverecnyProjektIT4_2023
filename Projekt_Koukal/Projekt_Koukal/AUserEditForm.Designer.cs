@@ -72,7 +72,7 @@
             // 
             // btnAUserEditOk
             // 
-            this.btnAUserEditOk.Location = new System.Drawing.Point(177, 203);
+            this.btnAUserEditOk.Location = new System.Drawing.Point(125, 199);
             this.btnAUserEditOk.Name = "btnAUserEditOk";
             this.btnAUserEditOk.Size = new System.Drawing.Size(94, 44);
             this.btnAUserEditOk.TabIndex = 4;
