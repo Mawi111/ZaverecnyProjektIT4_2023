@@ -21,112 +21,102 @@ namespace Projekt_Koukal
 
         public void AddUser(string userName, int idEmployee, int role, byte[] password, byte[] passwordSalt)
         {
-            using (SqlConnection conn = new SqlConnection(Connection))
-            {
-                conn.Open();
-                using (SqlCommand cmd = conn.CreateCommand())
-                {
-                    cmd.CommandText = "insert into Users values (@idEmployee,@userName,@password,@passwordSalt,@role)";
-                    cmd.Parameters.AddWithValue("userName", userName);
-                    cmd.Parameters.AddWithValue("idEmployee", idEmployee);
-                    cmd.Parameters.AddWithValue("password", password);
-                    cmd.Parameters.AddWithValue("passwordSalt", passwordSalt);
-                    cmd.Parameters.AddWithValue("role", role);
-                    cmd.ExecuteNonQuery();
-                }
-                conn.Close();
-            }
+            SqlConnection conn = new SqlConnection(Connection);
+            conn.Open();
+            
+            SqlCommand cmd = conn.CreateCommand();
+            cmd.CommandText = "insert into Users values (@idEmployee,@userName,@password,@passwordSalt,@role)";
+            cmd.Parameters.AddWithValue("userName", userName);
+            cmd.Parameters.AddWithValue("idEmployee", idEmployee);
+            cmd.Parameters.AddWithValue("password", password);
+            cmd.Parameters.AddWithValue("passwordSalt", passwordSalt);
+            cmd.Parameters.AddWithValue("role", role);
+            
+            cmd.ExecuteNonQuery();
+            conn.Close();
+            
         }
 
         public void DeleteUser(int idUser)
         {
-            using (SqlConnection conn = new SqlConnection(Connection))
-            {
-                conn.Open();
-                using (SqlCommand cmd = conn.CreateCommand())
-                {
-                    cmd.CommandText = "delete from Users where IdUser=@idUser";
-                    cmd.Parameters.AddWithValue("idUser", idUser);
-                    cmd.ExecuteNonQuery();
-                }
-                conn.Close();
-            }
+            SqlConnection conn = new SqlConnection(Connection);
+            conn.Open();
+            SqlCommand cmd = conn.CreateCommand();
+           
+            cmd.CommandText = "delete from Users where IdUser=@idUser";
+            cmd.Parameters.AddWithValue("idUser", idUser);
+            cmd.ExecuteNonQuery();
+     
+            conn.Close();
         }
 
         public User GetUser(string userName)
         {
             User user = null;
-            using (SqlConnection conn = new SqlConnection(Connection))
+            SqlConnection conn = new SqlConnection(Connection);
+            
+            conn.Open();
+            SqlCommand cmd = conn.CreateCommand();
+                
+            cmd.CommandText = "select * from Users where UserName=@userName";
+            cmd.Parameters.AddWithValue("userName", userName);
+            SqlDataReader reader = cmd.ExecuteReader();
+            
+            if (reader.Read())
             {
-                conn.Open();
-                using (SqlCommand cmd = conn.CreateCommand())
-                {
-                    cmd.CommandText = "select * from Users where UserName=@userName";
-                    cmd.Parameters.AddWithValue("userName", userName);
-                    using (SqlDataReader reader = cmd.ExecuteReader())
-                    {
-                        if (reader.Read())
-                        {
-                            user = new User(reader["UserName"].ToString(), Convert.ToInt32(reader["IdUser"]), (byte[])reader["Password"], (byte[])reader["PasswordSalt"], Convert.ToInt32(reader["Role"]));
-                        }
-                        else
-                        {
-                            MessageBox.Show("Uživatel s takovýmto uživatelským jménem neexistuje!");
-                        }
-                    }
-                }
-                conn.Close();
+                user = new User(reader["Username"].ToString(), Convert.ToInt32(reader["IdUser"]), (byte[])reader["Password"], (byte[])reader["PasswordSalt"], Convert.ToInt32(reader["Role"]));
             }
+            else
+            {
+                MessageBox.Show("Uživatel s takovýmto uživatelským jménem neexistuje!");
+            }
+         
+            conn.Close();
             return user;
         }
 
         public User GetUser(int id)
         {
             User user = null;
-            using (SqlConnection conn = new SqlConnection(Connection))
+            SqlConnection conn = new SqlConnection(Connection);
+           
+            conn.Open();
+            SqlCommand cmd = conn.CreateCommand();
+            cmd.CommandText = "select * from Users where IdUser=@id";
+            cmd.Parameters.AddWithValue("id", id);
+            SqlDataReader reader = cmd.ExecuteReader();
+            
+            if (reader.Read())
             {
-                conn.Open();
-                using (SqlCommand cmd = conn.CreateCommand())
-                {
-                    cmd.CommandText = "select * from Users where IdUser=@id";
-                    cmd.Parameters.AddWithValue("id", id);
-                    using (SqlDataReader reader = cmd.ExecuteReader())
-                    {
-                        if (reader.Read())
-                        {
-                            user = new User(Convert.ToInt32(reader["IdUser"]), Convert.ToString(reader["UserName"]), Convert.ToInt32(reader["IdEmployee"]), Convert.ToInt32(reader["Role"]));
-                        }
-                        else
-                        {
-                            MessageBox.Show("Uživatel s takovýmto uživatelským jménem neexistuje!");
-                        }
-                    }
-                }
-                conn.Close();
+                user = new User(Convert.ToInt32(reader["IdUser"]), Convert.ToString(reader["Username"]), Convert.ToInt32(reader["IdEmployee"]), Convert.ToInt32(reader["Role"]));
             }
+            else
+            {
+                MessageBox.Show("Uživatel s takovýmto uživatelským jménem neexistuje!");
+            }
+            
+            conn.Close();
             return user;
         }
 
         public bool IsUsered(int id)
         {
             User user = null;
-            using (SqlConnection conn = new SqlConnection(Connection))
+            SqlConnection conn = new SqlConnection(Connection);
+           
+            conn.Open();
+            SqlCommand cmd = conn.CreateCommand();
+              
+            cmd.CommandText = "select * from Users where IdEmployee=@idEmployee";
+            cmd.Parameters.AddWithValue("idEmployee", id);
+            SqlDataReader reader = cmd.ExecuteReader();
+              
+            if (reader.Read())
             {
-                conn.Open();
-                using (SqlCommand cmd = conn.CreateCommand())
-                {
-                    cmd.CommandText = "select * from Users where IdEmployee=@idEmployee";
-                    cmd.Parameters.AddWithValue("idEmployee", id);
-                    using (SqlDataReader reader = cmd.ExecuteReader())
-                    {
-                        if (reader.Read())
-                        {
-                            user = new User(Convert.ToInt32(reader["IdUser"]));
-                        }
-                    }
-                }
-                conn.Close();
+                user = new User(Convert.ToInt32(reader["IdUser"]));
             }
+            conn.Close();
+            
             if (user != null)
             {
                 return true;
@@ -140,93 +130,80 @@ namespace Projekt_Koukal
         public List<User> GetUsers()
         {
             List<User> users = new List<User>();
-            using (SqlConnection conn = new SqlConnection(Connection))
+            SqlConnection conn = new SqlConnection(Connection);
+            conn.Open();
+            
+            SqlCommand cmd = conn.CreateCommand();
+            cmd.CommandText = "select * from Users";
+            
+            SqlDataReader reader = cmd.ExecuteReader();   
+            while (reader.Read())
             {
-                conn.Open();
-                using (SqlCommand cmd = conn.CreateCommand())
-                {
-                    cmd.CommandText = "select * from Users";
-                    using (SqlDataReader reader = cmd.ExecuteReader())
-                    {
-                        while (reader.Read())
-                        {
-                            users.Add(new User(Convert.ToInt32(reader["IdUser"]), reader["UserName"].ToString(), Convert.ToInt32(reader["IdEmployee"]), Convert.ToInt32(reader["Role"])));
-                        }
-                    }
-                }
-                conn.Close();
+                users.Add(new User(Convert.ToInt32(reader["IdUser"]), reader["Username"].ToString(), Convert.ToInt32(reader["IdEmployee"]), Convert.ToInt32(reader["Role"])));
             }
+            conn.Close();
             return users;
         }
 
         public List<Role> GetRoles()
         {
             List<Role> roles = new List<Role>();
-            using (SqlConnection conn = new SqlConnection(Connection))
+            SqlConnection conn = new SqlConnection(Connection);
+           
+            conn.Open();
+            SqlCommand cmd = conn.CreateCommand();
+  
+            cmd.CommandText = "select * from Roles";
+            SqlDataReader reader = cmd.ExecuteReader();
+            
+            while (reader.Read())
             {
-                conn.Open();
-                using (SqlCommand cmd = conn.CreateCommand())
-                {
-                    cmd.CommandText = "select * from Roles";
-                    using (SqlDataReader reader = cmd.ExecuteReader())
-                    {
-                        while (reader.Read())
-                        {
-                            roles.Add(new Role(reader["Name"].ToString(), Convert.ToInt32(reader["IdRole"])));
-                        }
-                    }
-                }
-                conn.Close();
+                roles.Add(new Role(reader["Rolename"].ToString(), Convert.ToInt32(reader["IdRole"])));
             }
+            
+            conn.Close();
             return roles;
         }
 
         public List<Employee> GetEmployees()
         {
             List<Employee> employees = new List<Employee>();
-            using (SqlConnection conn = new SqlConnection(Connection))
+            SqlConnection conn = new SqlConnection(Connection);
+            conn.Open();
+            
+            SqlCommand cmd = conn.CreateCommand();
+            cmd.CommandText = "select * from Employees";
+            SqlDataReader reader = cmd.ExecuteReader();
+            
+            while (reader.Read())
             {
-                conn.Open();
-                using (SqlCommand cmd = conn.CreateCommand())
-                {
-                    cmd.CommandText = "select * from Employees";
-                    using (SqlDataReader reader = cmd.ExecuteReader())
-                    {
-                        while (reader.Read())
-                        {
-                            employees.Add(new Employee(Convert.ToInt32(reader["IdEmployee"]), reader["FirstName"].ToString(), reader["LastName"].ToString()));
-                        }
-                    }
-                }
-                conn.Close();
+                employees.Add(new Employee(Convert.ToInt32(reader["IdEmployee"]), reader["Firstname"].ToString(), reader["Lastname"].ToString()));
             }
+            conn.Close();
             return employees;
         }
 
         public Employee GetEmployee(int idEmployee)
         {
             Employee employee = null;
-            using (SqlConnection conn = new SqlConnection(Connection))
+            SqlConnection conn = new SqlConnection(Connection);
+            conn.Open();
+            
+            SqlCommand cmd = conn.CreateCommand();
+            cmd.CommandText = "select * from Employees where IdEmployee=@id";
+            cmd.Parameters.AddWithValue("id", idEmployee);
+            
+            SqlDataReader reader = cmd.ExecuteReader();
+                    
+            if (reader.Read())
             {
-                conn.Open();
-                using (SqlCommand cmd = conn.CreateCommand())
-                {
-                    cmd.CommandText = "select * from Employees where IdEmployee=@id";
-                    cmd.Parameters.AddWithValue("id", idEmployee);
-                    using (SqlDataReader reader = cmd.ExecuteReader())
-                    {
-                        if (reader.Read())
-                        {
-                            employee = new Employee(Convert.ToInt32(reader["IdEmployee"]), reader["FirstName"].ToString(), reader["LastName"].ToString());
-                        }
-                        else
-                        {
-                            MessageBox.Show("Zaměstnanec s takovýmto identifikačním číslem neexistuje!");
-                        }
-                    }
-                }
-                conn.Close();
+                employee = new Employee(Convert.ToInt32(reader["IdEmployee"]), reader["Firstname"].ToString(), reader["Lastname"].ToString());
             }
+            else
+            {
+                MessageBox.Show("Zaměstnanec s takovýmto identifikačním číslem neexistuje!");
+            }
+            conn.Close();
             return employee;
         }
 
@@ -244,7 +221,7 @@ namespace Projekt_Koukal
                     {
                         if (reader.Read())
                         {
-                            role = new Role(reader["Name"].ToString(), 0);
+                            role = new Role(reader["Rolename"].ToString(), 0);
                         }
                         else
                         {

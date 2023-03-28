@@ -8,17 +8,18 @@ namespace Projekt_Koukal
 {
     public class Role
     {
+        public string Rolename { get; set; }
+        public int IdRole { get; set; }
         public Role(string name)
         {
-            Name = name;
+            Rolename = name;
         }
 
         public Role(int id)
         {
-            Id = id;
+            IdRole = id;
         }
 
-        public string Name { get; set; }
-        public int Id { get; set; }
+        
     }
 }
