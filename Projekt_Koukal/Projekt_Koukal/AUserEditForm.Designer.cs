@@ -33,7 +33,6 @@
             this.label2 = new System.Windows.Forms.Label();
             this.cbRole = new System.Windows.Forms.ComboBox();
             this.btnAUserEditOk = new System.Windows.Forms.Button();
-            this.btnResetPassword = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // label1
@@ -81,22 +80,11 @@
             this.btnAUserEditOk.UseVisualStyleBackColor = true;
             this.btnAUserEditOk.Click += new System.EventHandler(this.btnAUserEditOk_Click);
             // 
-            // btnResetPassword
-            // 
-            this.btnResetPassword.Location = new System.Drawing.Point(77, 203);
-            this.btnResetPassword.Name = "btnResetPassword";
-            this.btnResetPassword.Size = new System.Drawing.Size(94, 44);
-            this.btnResetPassword.TabIndex = 5;
-            this.btnResetPassword.Text = "ZMĚNIT HESLO";
-            this.btnResetPassword.UseVisualStyleBackColor = true;
-            this.btnResetPassword.Click += new System.EventHandler(this.btnResetPassword_Click);
-            // 
             // AUserEditForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(372, 391);
-            this.Controls.Add(this.btnResetPassword);
             this.Controls.Add(this.btnAUserEditOk);
             this.Controls.Add(this.cbRole);
             this.Controls.Add(this.label2);
@@ -118,6 +106,5 @@
         private Label label2;
         private ComboBox cbRole;
         private Button btnAUserEditOk;
-        private Button btnResetPassword;
     }
 }

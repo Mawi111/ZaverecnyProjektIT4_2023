@@ -42,15 +42,6 @@ namespace Projekt_Koukal
             }
         }
 
-        private void btnResetPassword_Click(object sender, EventArgs e)
-        {
-            var user = sqlRepository.GetUser(IdUser);
-            user.ResetPassword();
-            sqlRepository.ResetUserPassword(IdUser, user.Password, user.PasswordSalt);
-            ParentForm.LoadData();
-            this.Close();
-        }
-
         private void AUserEditForm_Load(object sender, EventArgs e)
         {
             var user = sqlRepository.GetUser(IdUser);
