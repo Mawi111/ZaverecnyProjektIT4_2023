@@ -1,0 +1,21 @@
+DATABAZE - FirmaDB
+
+CREATE TABLE [dbo].[Employees] (
+    [IdEmployee] INT           IDENTITY (1, 1) NOT NULL,
+    [Firstname]  NVARCHAR (50) NOT NULL,
+    [Lastname]   NVARCHAR (50) NOT NULL,
+    [BirthDate]  DATETIME      NOT NULL,
+    [Email]      NVARCHAR (50) NOT NULL,
+    [Phone]      INT           NOT NULL,
+    PRIMARY KEY CLUSTERED ([IdEmployee] ASC)
+);
+
+CREATE TABLE [dbo].[Users] (
+    [IdUser]     INT           IDENTITY (1, 1) NOT NULL,
+    [Username]   NVARCHAR (50) NOT NULL,
+    [Password]   NVARCHAR (50) NOT NULL,
+    [Role]       INT           NOT NULL,
+    [IdEmployee] INT           NOT NULL,
+    PRIMARY KEY CLUSTERED ([IdUser] ASC),
+    CONSTRAINT [FK_Table_Employees] FOREIGN KEY ([IdEmployee]) REFERENCES [dbo].[Employees] ([IdEmployee])
+);

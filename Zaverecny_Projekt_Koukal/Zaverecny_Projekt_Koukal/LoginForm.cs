@@ -41,13 +41,17 @@ namespace Zaverecny_Projekt_Koukal
                         else if (user.Role == 2) 
                         {
                             UserForm userForm = new UserForm();
-                            userForm.ShowDialog();  
+                            userForm.ShowDialog();
                         }
+                    }
+                    else
+                    {
+                        MessageBox.Show("Chybí heslo, miláčku");
                     }
                 }
                 else 
                 {
-                    MessageBox.Show("Nejde to");
+                    MessageBox.Show("Něco ti chybí, zlato");
                 }
             }
         }
