@@ -33,6 +33,7 @@
             this.btnLogin = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
+            this.button1 = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // txtbUsername
@@ -52,13 +53,13 @@
             // 
             // btnLogin
             // 
-            this.btnLogin.Location = new System.Drawing.Point(80, 174);
+            this.btnLogin.Location = new System.Drawing.Point(15, 175);
             this.btnLogin.Name = "btnLogin";
             this.btnLogin.Size = new System.Drawing.Size(75, 23);
             this.btnLogin.TabIndex = 2;
             this.btnLogin.Text = "Přihlásit";
             this.btnLogin.UseVisualStyleBackColor = true;
-            this.btnLogin.Click += new System.EventHandler(this.btnLogin_Click);
+            //this.btnLogin.Click += new System.EventHandler(this.btnLogin_Click);
             // 
             // label1
             // 
@@ -78,17 +79,28 @@
             this.label2.TabIndex = 4;
             this.label2.Text = "Heslo";
             // 
-            // FormLogin
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(134, 175);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(75, 23);
+            this.button1.TabIndex = 5;
+            this.button1.Text = "button1";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
+            // LoginForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(237, 230);
+            this.Controls.Add(this.button1);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.btnLogin);
             this.Controls.Add(this.txtbPassword);
             this.Controls.Add(this.txtbUsername);
-            this.Name = "FormLogin";
+            this.Name = "LoginForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "FormLogin";
             this.ResumeLayout(false);
@@ -103,5 +115,6 @@
         private Button btnLogin;
         private Label label1;
         private Label label2;
+        private Button button1;
     }
 }

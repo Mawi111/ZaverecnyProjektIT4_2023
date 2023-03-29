@@ -26,7 +26,7 @@ namespace Projekt_Koukal
             var roles = sqlRepository.GetRoles();
             foreach (var role in roles)
             {
-                lvRoleChanger.Items.Add(new ListViewItem(new string[] { role.Name, role.Id.ToString() }));
+                lvRoleChanger.Items.Add(new ListViewItem(new string[] { role.Rolename, role.IdRole.ToString() }));
             }
         }
 

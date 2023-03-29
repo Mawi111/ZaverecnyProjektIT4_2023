@@ -13,10 +13,11 @@ namespace Projekt_Koukal
     public partial class AUserManagement : Form
     {
         SqlRepository sqlRepository;
+
         public AUserManagement()
         {
             InitializeComponent();
-            SqlRepository sqlRepository = new SqlRepository();
+            sqlRepository = new SqlRepository();
         }
 
         public void LoadData()

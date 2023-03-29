@@ -19,17 +19,16 @@ namespace Projekt_Koukal
             Connection = @"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=ProjectDB;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False";
         }
 
-        public void AddUser(string userName, int idEmployee, int role, byte[] password, byte[] passwordSalt)
+        public void AddUser(string username, string password, int idEmployee, int role)
         {
             SqlConnection conn = new SqlConnection(Connection);
             conn.Open();
             
             SqlCommand cmd = conn.CreateCommand();
-            cmd.CommandText = "insert into Users values (@idEmployee,@username,@password,@passwordSalt,@role)";
-            cmd.Parameters.AddWithValue("userName", userName);
-            cmd.Parameters.AddWithValue("idEmployee", idEmployee);
+            cmd.CommandText = "insert into Users values (@idEmployee,@username,@password,@role)";
+            cmd.Parameters.AddWithValue("userName", username);
             cmd.Parameters.AddWithValue("password", password);
-            cmd.Parameters.AddWithValue("passwordSalt", passwordSalt);
+            cmd.Parameters.AddWithValue("idEmployee", idEmployee);
             cmd.Parameters.AddWithValue("role", role);
             
             cmd.ExecuteNonQuery();
@@ -50,27 +49,27 @@ namespace Projekt_Koukal
             conn.Close();
         }
 
-        public User GetUser(string userName)
+        public User GetUser(string username)
         {
             User user = null;
             SqlConnection conn = new SqlConnection(Connection);
-            
+
             conn.Open();
             SqlCommand cmd = conn.CreateCommand();
-                
+
             cmd.CommandText = "select * from Users where UserName=@username";
-            cmd.Parameters.AddWithValue("userName", userName);
+            cmd.Parameters.AddWithValue("userName", username);
             SqlDataReader reader = cmd.ExecuteReader();
-            
+
             if (reader.Read())
             {
-                user = new User(Convert.ToInt32(reader["IdRole"]),Convert.ToInt32(reader["Role"]), reader["Username"].ToString(), (byte[])reader["Password"], (byte[])reader["PwdSalt"]);
+                user = new User(Convert.ToInt32(reader["IdRole"]), Convert.ToInt32(reader["Role"]), reader["Username"].ToString(), (string)reader["Password"]);
             }
             else
             {
                 MessageBox.Show("Uživatel s takovýmto uživatelským jménem neexistuje!");
             }
-         
+
             conn.Close();
             return user;
         }
@@ -139,7 +138,7 @@ namespace Projekt_Koukal
             SqlDataReader reader = cmd.ExecuteReader();   
             while (reader.Read())
             {
-                users.Add(new User(Convert.ToInt32(reader["IdUser"]), reader["Username"].ToString(), Convert.ToInt32(reader["IdEmployee"]), Convert.ToInt32(reader["Role"])));
+                users.Add(new User(Convert.ToInt32(reader["IdUser"]), reader["Username"].ToString(), Convert.ToInt32(reader["IdEmployees"]), Convert.ToInt32(reader["Role"])));
             }
             conn.Close();
             return users;
@@ -172,7 +171,7 @@ namespace Projekt_Koukal
             conn.Open();
             
             SqlCommand cmd = conn.CreateCommand();
-            cmd.CommandText = "select * from Employees";
+            cmd.CommandText = "select * from Employee";
             SqlDataReader reader = cmd.ExecuteReader();
             
             while (reader.Read())
@@ -236,7 +235,7 @@ namespace Projekt_Koukal
             SqlConnection conn = new SqlConnection(Connection);
             conn.Open();
             SqlCommand cmd = conn.CreateCommand();
-            cmd.CommandText = "select * from Roles where Name=@rolename";
+            cmd.CommandText = "select * from Roles where Rolename=@rolename";
             cmd.Parameters.AddWithValue("roleName", rolename);
             
             SqlDataReader reader = cmd.ExecuteReader();
