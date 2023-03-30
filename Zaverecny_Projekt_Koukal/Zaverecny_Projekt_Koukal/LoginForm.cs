@@ -46,7 +46,7 @@ namespace Zaverecny_Projekt_Koukal
                     }
                     else
                     {
-                        MessageBox.Show("Chybí heslo, miláčku");
+                        MessageBox.Show("Chybné heslo, miláčku");
                     }
                 }
                 else 

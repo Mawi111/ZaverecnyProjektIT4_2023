@@ -83,13 +83,13 @@ namespace Zaverecny_Projekt_Koukal
             connection.Close();
         }
 
-        public static void EditUser( int idUser, string username, string password, int role)
+        public static void EditUser( int idUser,string username, string password, int role)
         {
             SqlConnection connection = new SqlConnection(connectionString);
             connection.Open();
 
             SqlCommand cmd = connection.CreateCommand();
-            cmd.CommandText = "UPDATE Users SET IdUser=@idUser,Username=@username,Password=@password,Role=@role WHERE IdUser=@idUser";
+            cmd.CommandText = "UPDATE Users SET Username=@username,Password=@password,Role=@role WHERE IdUser=@idUser";
             cmd.Parameters.AddWithValue("idUser", idUser);
             cmd.Parameters.AddWithValue("username", username);
             cmd.Parameters.AddWithValue("password", password);

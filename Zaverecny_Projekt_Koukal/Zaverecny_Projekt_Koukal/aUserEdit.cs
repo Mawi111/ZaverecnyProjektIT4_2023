@@ -17,7 +17,7 @@ namespace Zaverecny_Projekt_Koukal
         {
             InitializeComponent();
             User = user;
-            txtIdUser.Text = user.IdUser.ToString();
+            
             txtUsername.Text = user.Username;
             txtPassword.Text = user.Password;
             txtRole.Text = user.Role.ToString();
@@ -25,8 +25,16 @@ namespace Zaverecny_Projekt_Koukal
 
         private void btnOk_Click(object sender, EventArgs e)
         {
-            SqlRepo.EditUser(User.IdUser, txtUsername.Text, txtPassword.Text, User.Role);
-            Close();
+            if (Convert.ToInt32(txtRole.Text) <= 0  || Convert.ToInt32(txtRole.Text) > 2)
+            {
+                MessageBox.Show("Role jsou pouze: 1 pro admina a 2 pro usera");
+                Close();
+            }
+            else
+            {
+                SqlRepo.EditUser(User.IdUser, txtUsername.Text, txtPassword.Text, Convert.ToInt32(txtRole.Text));
+                Close();
+            }    
         }
     }
 }
