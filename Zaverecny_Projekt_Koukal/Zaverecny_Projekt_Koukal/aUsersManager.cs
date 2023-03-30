@@ -63,6 +63,18 @@ namespace Zaverecny_Projekt_Koukal
             RefreshUsers();
         }
 
-        
+        private void btnAddUser_Click(object sender, EventArgs e)
+        {
+            new aUserAdd().ShowDialog();
+            users = SqlRepo.LoadUsers();
+            RefreshUsers();
+        }
+
+        private void btnEditUser_Click(object sender, EventArgs e)
+        {
+            new aUserEdit(users[lvUsers.SelectedIndices[0]]).ShowDialog();
+            users = SqlRepo.LoadUsers();
+            RefreshUsers();
+        }
     }
 }

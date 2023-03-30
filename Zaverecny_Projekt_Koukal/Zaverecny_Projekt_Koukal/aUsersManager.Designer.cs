@@ -104,6 +104,7 @@
             this.btnEditUser.TabIndex = 2;
             this.btnEditUser.Text = "UPRAVIT";
             this.btnEditUser.UseVisualStyleBackColor = true;
+            this.btnEditUser.Click += new System.EventHandler(this.btnEditUser_Click);
             // 
             // btnAddUser
             // 
@@ -113,6 +114,7 @@
             this.btnAddUser.TabIndex = 3;
             this.btnAddUser.Text = "PŘIDAT";
             this.btnAddUser.UseVisualStyleBackColor = true;
+            this.btnAddUser.Click += new System.EventHandler(this.btnAddUser_Click);
             // 
             // txtSearch
             // 

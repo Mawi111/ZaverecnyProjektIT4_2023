@@ -18,7 +18,7 @@ namespace Zaverecny_Projekt_Koukal
         }
 
 
-        public User GetUser(string username)
+        public User GetUser(string username) // funkce pro LoginForm
         {
             User user = null;
             SqlConnection connection = new SqlConnection(connectionString);
@@ -67,6 +67,37 @@ namespace Zaverecny_Projekt_Koukal
             cmd.ExecuteNonQuery(); 
             connection.Close();
         }
+
+        public static void AddUser(string username, string password, int role, int idEmployee)
+        {
+            SqlConnection connection = new SqlConnection(connectionString);
+            connection.Open();
+
+            SqlCommand cmd = connection.CreateCommand();
+            cmd.CommandText = "INSERT INTO Users (Username,Password,Role,IdEmployee) VALUES (@username,@password,@role,@idEmployee)";
+            cmd.Parameters.AddWithValue("username", username);
+            cmd.Parameters.AddWithValue("password", password);
+            cmd.Parameters.AddWithValue("role", role);
+            cmd.Parameters.AddWithValue("idEmployee", idEmployee);
+            cmd.ExecuteNonQuery(); 
+            connection.Close();
+        }
+
+        public static void EditUser( int idUser, string username, string password, int role)
+        {
+            SqlConnection connection = new SqlConnection(connectionString);
+            connection.Open();
+
+            SqlCommand cmd = connection.CreateCommand();
+            cmd.CommandText = "UPDATE Users SET IdUser=@idUser,Username=@username,Password=@password,Role=@role WHERE IdUser=@idUser";
+            cmd.Parameters.AddWithValue("idUser", idUser);
+            cmd.Parameters.AddWithValue("username", username);
+            cmd.Parameters.AddWithValue("password", password);
+            cmd.Parameters.AddWithValue("role", role);
+            cmd.ExecuteNonQuery(); 
+            connection.Close();
+        }
+
 
 
 

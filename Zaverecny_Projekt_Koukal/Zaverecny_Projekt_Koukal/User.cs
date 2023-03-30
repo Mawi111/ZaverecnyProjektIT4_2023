@@ -29,5 +29,17 @@ namespace Zaverecny_Projekt_Koukal
             Role = role;
             IdEmployee = idEmployee;
         }
+
+        public User(int idUser,string username, string password, int role) // kostruktor pro EditUser v SqlRepo
+        {
+            IdUser = idUser;
+            Username = username;
+            Password = password;
+            Role = role;
+        }
+
+
+
+
     }
 }
