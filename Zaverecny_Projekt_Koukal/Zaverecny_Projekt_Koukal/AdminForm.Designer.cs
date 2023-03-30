@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.btnAUsers = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
+            this.btnEmployees = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
             this.button4 = new System.Windows.Forms.Button();
             this.button5 = new System.Windows.Forms.Button();
@@ -38,22 +38,23 @@
             // 
             // btnAUsers
             // 
-            this.btnAUsers.Location = new System.Drawing.Point(166, 102);
+            this.btnAUsers.Location = new System.Drawing.Point(166, 175);
             this.btnAUsers.Name = "btnAUsers";
             this.btnAUsers.Size = new System.Drawing.Size(152, 53);
-            this.btnAUsers.TabIndex = 0;
+            this.btnAUsers.TabIndex = 1;
             this.btnAUsers.Text = "UŽIVATELÉ";
             this.btnAUsers.UseVisualStyleBackColor = true;
             this.btnAUsers.Click += new System.EventHandler(this.btnAUsers_Click);
             // 
-            // button2
+            // btnEmployees
             // 
-            this.button2.Location = new System.Drawing.Point(166, 175);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(152, 53);
-            this.button2.TabIndex = 1;
-            this.button2.Text = "button2";
-            this.button2.UseVisualStyleBackColor = true;
+            this.btnEmployees.Location = new System.Drawing.Point(166, 102);
+            this.btnEmployees.Name = "btnEmployees";
+            this.btnEmployees.Size = new System.Drawing.Size(152, 53);
+            this.btnEmployees.TabIndex = 0;
+            this.btnEmployees.Text = "ZAMĚSTNANCI";
+            this.btnEmployees.UseVisualStyleBackColor = true;
+            this.btnEmployees.Click += new System.EventHandler(this.btnEmployees_Click);
             // 
             // button3
             // 
@@ -100,7 +101,7 @@
             this.Controls.Add(this.button5);
             this.Controls.Add(this.button4);
             this.Controls.Add(this.button3);
-            this.Controls.Add(this.button2);
+            this.Controls.Add(this.btnEmployees);
             this.Controls.Add(this.btnAUsers);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.Name = "AdminForm";
@@ -113,7 +114,7 @@
         #endregion
 
         private Button btnAUsers;
-        private Button button2;
+        private Button btnEmployees;
         private Button button3;
         private Button button4;
         private Button button5;

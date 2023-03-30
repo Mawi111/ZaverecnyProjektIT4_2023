@@ -17,6 +17,7 @@ namespace Zaverecny_Projekt_Koukal
             
         }
 
+        // Začátek User metod a funkcí
 
         public User GetUser(string username) // funkce pro LoginForm
         {
@@ -98,8 +99,36 @@ namespace Zaverecny_Projekt_Koukal
             connection.Close();
         }
 
+        // Začátek Employee metod a funkcí
+        public static List<Employee> LoadEmployees()
+        {
+            SqlConnection connection = new SqlConnection(connectionString);
+            connection.Open();
 
+            SqlCommand cmd = connection.CreateCommand();
+            cmd.CommandText = "SELECT * FROM Employees";
 
+            SqlDataReader reader = cmd.ExecuteReader();
+            List<Employee> listEmployees = new List<Employee>();
+            while (reader.Read())
+            {
+                listEmployees.Add(new Employee(Convert.ToInt32(reader["IdEmployee"]), reader["Firstname"].ToString(), reader["Lastname"].ToString(), Convert.ToDateTime(reader["BirthDate"]), reader["Email"].ToString(), Convert.ToInt32(reader["Phone"])));
+            }
+            connection.Close();
+            return listEmployees;
+        }
+
+        public static void DeleteEmployee(int idEmployee)
+        {
+            SqlConnection connection = new SqlConnection(connectionString);
+            connection.Open();
+
+            SqlCommand cmd = connection.CreateCommand();
+            cmd.CommandText = "DELETE FROM Employees WHERE IdEmployee=@idEmployee";
+            cmd.Parameters.AddWithValue("idEmployee", idEmployee);
+            cmd.ExecuteNonQuery();
+            connection.Close();
+        }
 
     }
 }

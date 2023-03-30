@@ -22,5 +22,11 @@ namespace Zaverecny_Projekt_Koukal
             aUsersManager aUsersManager = new aUsersManager();  
             aUsersManager.ShowDialog();
         }
+
+        private void btnEmployees_Click(object sender, EventArgs e)
+        {
+            aEmployeesManager aEmployeesManager = new aEmployeesManager();
+            aEmployeesManager.Show();
+        }
     }
 }
