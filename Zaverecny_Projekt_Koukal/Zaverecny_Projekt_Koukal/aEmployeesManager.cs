@@ -71,7 +71,9 @@ namespace Zaverecny_Projekt_Koukal
 
         private void btnEditEm_Click(object sender, EventArgs e)
         {
-
+            new aEditEmployee(employees[lvEmployees.SelectedIndices[0]]).ShowDialog();
+            employees = SqlRepo.LoadEmployees();
+            RefreshEmployees();
         }
     }
 }
