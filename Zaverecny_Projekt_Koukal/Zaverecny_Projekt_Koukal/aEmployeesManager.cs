@@ -8,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static System.Reflection.Metadata.BlobBuilder;
 
 namespace Zaverecny_Projekt_Koukal
 {
@@ -59,6 +60,18 @@ namespace Zaverecny_Projekt_Koukal
             SqlRepo.DeleteEmployee(id);
             employees = SqlRepo.LoadEmployees();
             RefreshEmployees();
+        }
+
+        private void btnAddEm_Click(object sender, EventArgs e)
+        {
+            new aEmployeeAdd().ShowDialog();
+            employees = SqlRepo.LoadEmployees();
+            RefreshEmployees();
+        }
+
+        private void btnEditEm_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

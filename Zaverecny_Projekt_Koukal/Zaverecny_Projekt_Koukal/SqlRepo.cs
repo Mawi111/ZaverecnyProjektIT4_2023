@@ -130,5 +130,36 @@ namespace Zaverecny_Projekt_Koukal
             connection.Close();
         }
 
+        public static void AddEmployee(string firstname, string lastname, DateTime birthDate, string email, int phone)
+        {
+            SqlConnection connection = new SqlConnection(connectionString);
+            connection.Open();
+
+            SqlCommand cmd = connection.CreateCommand();
+            cmd.CommandText = "INSERT INTO Employees (Firstname,Lastname,BirthDate,Email,Phone) VALUES (@firstname,@lastname,@birthDate,@email,@phone)";
+            cmd.Parameters.AddWithValue("firstname", firstname);
+            cmd.Parameters.AddWithValue("lastname", lastname);
+            cmd.Parameters.AddWithValue("birthDate", birthDate);
+            cmd.Parameters.AddWithValue("email", email);
+            cmd.Parameters.AddWithValue("phone", phone);
+            cmd.ExecuteNonQuery();
+            connection.Close();
+        }
+        public static void EditEmployee(int idEmployee, string firstname, string lastname, DateTime birthDate, string email, int phone)
+        {
+            SqlConnection connection = new SqlConnection(connectionString);
+            connection.Open();
+
+            SqlCommand cmd = connection.CreateCommand();
+            cmd.CommandText = "UPDATE Employees SET Firstname=@firstname,Lastname=@lastname,BirthDate=@birthDate,Email=@email,Phone=@phone WHERE IdEmployee=@idEmployee";
+            cmd.Parameters.AddWithValue("idEmployee", idEmployee);
+            cmd.Parameters.AddWithValue("firstname", firstname);
+            cmd.Parameters.AddWithValue("lastname", lastname);
+            cmd.Parameters.AddWithValue("birthDate", birthDate);
+            cmd.Parameters.AddWithValue("email", email);
+            cmd.Parameters.AddWithValue("phone", phone);
+            cmd.ExecuteNonQuery();
+            connection.Close();
+        }
     }
 }

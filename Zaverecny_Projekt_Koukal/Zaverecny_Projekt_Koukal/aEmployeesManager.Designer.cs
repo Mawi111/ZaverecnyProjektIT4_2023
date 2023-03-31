@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.label2 = new System.Windows.Forms.Label();
             this.txtSearch = new System.Windows.Forms.TextBox();
             this.btnAddEm = new System.Windows.Forms.Button();
             this.btnEditEm = new System.Windows.Forms.Button();
@@ -41,19 +40,6 @@
             this.columnHeader5 = new System.Windows.Forms.ColumnHeader();
             this.columnHeader6 = new System.Windows.Forms.ColumnHeader();
             this.SuspendLayout();
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.BackColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.label2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.label2.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label2.Location = new System.Drawing.Point(649, 352);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(139, 86);
-            this.label2.TabIndex = 12;
-            this.label2.Text = "Role pro uživatele:\r\n\r\n1 = admin\r\n2 = user\r\n";
-            this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // txtSearch
             // 
@@ -72,6 +58,7 @@
             this.btnAddEm.TabIndex = 10;
             this.btnAddEm.Text = "PŘIDAT";
             this.btnAddEm.UseVisualStyleBackColor = true;
+            this.btnAddEm.Click += new System.EventHandler(this.btnAddEm_Click);
             // 
             // btnEditEm
             // 
@@ -82,6 +69,7 @@
             this.btnEditEm.TabIndex = 9;
             this.btnEditEm.Text = "UPRAVIT";
             this.btnEditEm.UseVisualStyleBackColor = true;
+            this.btnEditEm.Click += new System.EventHandler(this.btnEditEm_Click);
             // 
             // btnDeleteEm
             // 
@@ -147,7 +135,6 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Controls.Add(this.label2);
             this.Controls.Add(this.txtSearch);
             this.Controls.Add(this.btnAddEm);
             this.Controls.Add(this.btnEditEm);
@@ -163,8 +150,6 @@
         }
 
         #endregion
-
-        private Label label2;
         private TextBox txtSearch;
         private Button btnAddEm;
         private Button btnEditEm;

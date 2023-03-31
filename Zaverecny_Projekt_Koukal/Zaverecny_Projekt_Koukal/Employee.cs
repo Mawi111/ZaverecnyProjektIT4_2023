@@ -24,5 +24,14 @@ namespace Zaverecny_Projekt_Koukal
             Email = email;
             Phone = phone;
         }
+
+        public Employee(string firstname, string lastname, DateTime birthDate, string email, int phone)
+        {
+            Firstname = firstname;
+            Lastname = lastname;
+            BirthDate = birthDate;
+            Email = email;
+            Phone = phone;
+        }
     }
 }
