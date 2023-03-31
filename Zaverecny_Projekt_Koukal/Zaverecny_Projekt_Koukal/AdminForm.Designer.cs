@@ -30,7 +30,7 @@
         {
             this.btnAUsers = new System.Windows.Forms.Button();
             this.btnEmployees = new System.Windows.Forms.Button();
-            this.button3 = new System.Windows.Forms.Button();
+            this.btnAContracts = new System.Windows.Forms.Button();
             this.button4 = new System.Windows.Forms.Button();
             this.button5 = new System.Windows.Forms.Button();
             this.button6 = new System.Windows.Forms.Button();
@@ -56,14 +56,15 @@
             this.btnEmployees.UseVisualStyleBackColor = true;
             this.btnEmployees.Click += new System.EventHandler(this.btnEmployees_Click);
             // 
-            // button3
+            // btnAContracts
             // 
-            this.button3.Location = new System.Drawing.Point(166, 248);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(152, 53);
-            this.button3.TabIndex = 2;
-            this.button3.Text = "button3";
-            this.button3.UseVisualStyleBackColor = true;
+            this.btnAContracts.Location = new System.Drawing.Point(166, 248);
+            this.btnAContracts.Name = "btnAContracts";
+            this.btnAContracts.Size = new System.Drawing.Size(152, 53);
+            this.btnAContracts.TabIndex = 2;
+            this.btnAContracts.Text = "KONTRAKTY";
+            this.btnAContracts.UseVisualStyleBackColor = true;
+            this.btnAContracts.Click += new System.EventHandler(this.btnAContracts_Click);
             // 
             // button4
             // 
@@ -100,7 +101,7 @@
             this.Controls.Add(this.button6);
             this.Controls.Add(this.button5);
             this.Controls.Add(this.button4);
-            this.Controls.Add(this.button3);
+            this.Controls.Add(this.btnAContracts);
             this.Controls.Add(this.btnEmployees);
             this.Controls.Add(this.btnAUsers);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
@@ -115,7 +116,7 @@
 
         private Button btnAUsers;
         private Button btnEmployees;
-        private Button button3;
+        private Button btnAContracts;
         private Button button4;
         private Button button5;
         private Button button6;

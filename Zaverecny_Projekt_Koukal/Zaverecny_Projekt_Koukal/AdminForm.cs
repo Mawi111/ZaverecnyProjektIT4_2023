@@ -28,5 +28,11 @@ namespace Zaverecny_Projekt_Koukal
             aEmployeesManager aEmployeesManager = new aEmployeesManager();
             aEmployeesManager.Show();
         }
+
+        private void btnAContracts_Click(object sender, EventArgs e)
+        {
+            aContractsManager aContractsManager = new aContractsManager();
+            aContractsManager.Show();
+        }
     }
 }

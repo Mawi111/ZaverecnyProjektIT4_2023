@@ -161,5 +161,25 @@ namespace Zaverecny_Projekt_Koukal
             cmd.ExecuteNonQuery();
             connection.Close();
         }
+
+        // Začátek Contract metod a funkcí
+        public static List<Contract> LoadContracts()
+        {
+            SqlConnection connection = new SqlConnection(connectionString);
+            connection.Open();
+
+            SqlCommand cmd = connection.CreateCommand();
+            cmd.CommandText = "SELECT * FROM Contracts";
+
+            SqlDataReader reader = cmd.ExecuteReader();
+            List<Contract> listContracts = new List<Contract>();
+            while (reader.Read())
+            {
+                listContracts.Add(new Contract(Convert.ToInt32(reader["IdContract"]), reader["Customer"].ToString(), reader["Description"].ToString());
+            }
+            connection.Close();
+            return listContracts;
+        }
+
     }
 }
