@@ -29,9 +29,9 @@
         private void InitializeComponent()
         {
             this.txtSearch = new System.Windows.Forms.TextBox();
-            this.btnAddEm = new System.Windows.Forms.Button();
-            this.btnEditEm = new System.Windows.Forms.Button();
-            this.btnDeleteEm = new System.Windows.Forms.Button();
+            this.btnAddCo = new System.Windows.Forms.Button();
+            this.btnEditCo = new System.Windows.Forms.Button();
+            this.btnDeleteCo = new System.Windows.Forms.Button();
             this.lvContracts = new System.Windows.Forms.ListView();
             this.columnHeader1 = new System.Windows.Forms.ColumnHeader();
             this.columnHeader2 = new System.Windows.Forms.ColumnHeader();
@@ -47,34 +47,37 @@
             this.txtSearch.TabIndex = 16;
             this.txtSearch.TextChanged += new System.EventHandler(this.txtSearch_TextChanged);
             // 
-            // btnAddEm
+            // btnAddCo
             // 
-            this.btnAddEm.Location = new System.Drawing.Point(664, 162);
-            this.btnAddEm.Name = "btnAddEm";
-            this.btnAddEm.Size = new System.Drawing.Size(124, 43);
-            this.btnAddEm.TabIndex = 15;
-            this.btnAddEm.Text = "PŘIDAT";
-            this.btnAddEm.UseVisualStyleBackColor = true;
+            this.btnAddCo.Location = new System.Drawing.Point(664, 162);
+            this.btnAddCo.Name = "btnAddCo";
+            this.btnAddCo.Size = new System.Drawing.Size(124, 43);
+            this.btnAddCo.TabIndex = 15;
+            this.btnAddCo.Text = "PŘIDAT";
+            this.btnAddCo.UseVisualStyleBackColor = true;
+            this.btnAddCo.Click += new System.EventHandler(this.btnAddCo_Click);
             // 
-            // btnEditEm
+            // btnEditCo
             // 
-            this.btnEditEm.Enabled = false;
-            this.btnEditEm.Location = new System.Drawing.Point(664, 102);
-            this.btnEditEm.Name = "btnEditEm";
-            this.btnEditEm.Size = new System.Drawing.Size(124, 43);
-            this.btnEditEm.TabIndex = 14;
-            this.btnEditEm.Text = "UPRAVIT";
-            this.btnEditEm.UseVisualStyleBackColor = true;
+            this.btnEditCo.Enabled = false;
+            this.btnEditCo.Location = new System.Drawing.Point(664, 102);
+            this.btnEditCo.Name = "btnEditCo";
+            this.btnEditCo.Size = new System.Drawing.Size(124, 43);
+            this.btnEditCo.TabIndex = 14;
+            this.btnEditCo.Text = "UPRAVIT";
+            this.btnEditCo.UseVisualStyleBackColor = true;
+            this.btnEditCo.Click += new System.EventHandler(this.btnEditCo_Click);
             // 
-            // btnDeleteEm
+            // btnDeleteCo
             // 
-            this.btnDeleteEm.Enabled = false;
-            this.btnDeleteEm.Location = new System.Drawing.Point(664, 42);
-            this.btnDeleteEm.Name = "btnDeleteEm";
-            this.btnDeleteEm.Size = new System.Drawing.Size(124, 43);
-            this.btnDeleteEm.TabIndex = 13;
-            this.btnDeleteEm.Text = "SMAZAT";
-            this.btnDeleteEm.UseVisualStyleBackColor = true;
+            this.btnDeleteCo.Enabled = false;
+            this.btnDeleteCo.Location = new System.Drawing.Point(664, 42);
+            this.btnDeleteCo.Name = "btnDeleteCo";
+            this.btnDeleteCo.Size = new System.Drawing.Size(124, 43);
+            this.btnDeleteCo.TabIndex = 13;
+            this.btnDeleteCo.Text = "SMAZAT";
+            this.btnDeleteCo.UseVisualStyleBackColor = true;
+            this.btnDeleteCo.Click += new System.EventHandler(this.btnDeleteCo_Click);
             // 
             // lvContracts
             // 
@@ -90,6 +93,7 @@
             this.lvContracts.TabIndex = 12;
             this.lvContracts.UseCompatibleStateImageBehavior = false;
             this.lvContracts.View = System.Windows.Forms.View.Details;
+            this.lvContracts.SelectedIndexChanged += new System.EventHandler(this.lvContracts_SelectedIndexChanged);
             // 
             // columnHeader1
             // 
@@ -112,9 +116,9 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
             this.Controls.Add(this.txtSearch);
-            this.Controls.Add(this.btnAddEm);
-            this.Controls.Add(this.btnEditEm);
-            this.Controls.Add(this.btnDeleteEm);
+            this.Controls.Add(this.btnAddCo);
+            this.Controls.Add(this.btnEditCo);
+            this.Controls.Add(this.btnDeleteCo);
             this.Controls.Add(this.lvContracts);
             this.Name = "aContractsManager";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
@@ -127,9 +131,9 @@
         #endregion
 
         private TextBox txtSearch;
-        private Button btnAddEm;
-        private Button btnEditEm;
-        private Button btnDeleteEm;
+        private Button btnAddCo;
+        private Button btnEditCo;
+        private Button btnDeleteCo;
         private ListView lvContracts;
         private ColumnHeader columnHeader1;
         private ColumnHeader columnHeader2;

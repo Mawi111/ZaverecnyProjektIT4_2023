@@ -175,11 +175,49 @@ namespace Zaverecny_Projekt_Koukal
             List<Contract> listContracts = new List<Contract>();
             while (reader.Read())
             {
-                listContracts.Add(new Contract(Convert.ToInt32(reader["IdContract"]), reader["Customer"].ToString(), reader["Description"].ToString());
+                listContracts.Add(new Contract(Convert.ToInt32(reader["IdContract"]), reader["Customer"].ToString(), reader["Description"].ToString()));
             }
             connection.Close();
             return listContracts;
         }
 
+        public static void DeleteContract(int idContract)
+        {
+            SqlConnection connection = new SqlConnection(connectionString);
+            connection.Open();
+
+            SqlCommand cmd = connection.CreateCommand();
+            cmd.CommandText = "DELETE FROM Contracts WHERE IdContract=@idContract";
+            cmd.Parameters.AddWithValue("idContract", idContract);
+            cmd.ExecuteNonQuery();
+            connection.Close();
+        }
+
+        public static void AddContract(string customer, string description)
+        {
+            SqlConnection connection = new SqlConnection(connectionString);
+            connection.Open();
+
+            SqlCommand cmd = connection.CreateCommand();
+            cmd.CommandText = "INSERT INTO Contracts (Customer,Description) VALUES (@customer,@description)";
+            cmd.Parameters.AddWithValue("customer", customer);
+            cmd.Parameters.AddWithValue("description", description);
+            cmd.ExecuteNonQuery();
+            connection.Close();
+        }
+
+        public static void EditContract(int idContract, string customer, string description)
+        {
+            SqlConnection connection = new SqlConnection(connectionString);
+            connection.Open();
+
+            SqlCommand cmd = connection.CreateCommand();
+            cmd.CommandText = "UPDATE Contracts SET Customer=@customer,Description=@description WHERE IdContract=@idContract";
+            cmd.Parameters.AddWithValue("idContract", idContract);
+            cmd.Parameters.AddWithValue("customer", customer);
+            cmd.Parameters.AddWithValue("description", description);
+            cmd.ExecuteNonQuery();
+            connection.Close();
+        }
     }
 }
