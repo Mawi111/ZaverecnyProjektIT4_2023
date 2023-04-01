@@ -31,8 +31,8 @@
             this.btnAUsers = new System.Windows.Forms.Button();
             this.btnEmployees = new System.Windows.Forms.Button();
             this.btnAContracts = new System.Windows.Forms.Button();
-            this.button4 = new System.Windows.Forms.Button();
-            this.button5 = new System.Windows.Forms.Button();
+            this.btnWorkTypes = new System.Windows.Forms.Button();
+            this.btnWohManager = new System.Windows.Forms.Button();
             this.button6 = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
@@ -66,23 +66,25 @@
             this.btnAContracts.UseVisualStyleBackColor = true;
             this.btnAContracts.Click += new System.EventHandler(this.btnAContracts_Click);
             // 
-            // button4
+            // btnWorkTypes
             // 
-            this.button4.Location = new System.Drawing.Point(482, 102);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(152, 53);
-            this.button4.TabIndex = 3;
-            this.button4.Text = "button4";
-            this.button4.UseVisualStyleBackColor = true;
+            this.btnWorkTypes.Location = new System.Drawing.Point(482, 102);
+            this.btnWorkTypes.Name = "btnWorkTypes";
+            this.btnWorkTypes.Size = new System.Drawing.Size(152, 53);
+            this.btnWorkTypes.TabIndex = 3;
+            this.btnWorkTypes.Text = "TYPY PRACÍ";
+            this.btnWorkTypes.UseVisualStyleBackColor = true;
+            this.btnWorkTypes.Click += new System.EventHandler(this.btnWorkTypes_Click);
             // 
-            // button5
+            // btnWohManager
             // 
-            this.button5.Location = new System.Drawing.Point(482, 175);
-            this.button5.Name = "button5";
-            this.button5.Size = new System.Drawing.Size(152, 53);
-            this.button5.TabIndex = 4;
-            this.button5.Text = "button5";
-            this.button5.UseVisualStyleBackColor = true;
+            this.btnWohManager.Location = new System.Drawing.Point(482, 175);
+            this.btnWohManager.Name = "btnWohManager";
+            this.btnWohManager.Size = new System.Drawing.Size(152, 53);
+            this.btnWohManager.TabIndex = 4;
+            this.btnWohManager.Text = "ROZPIS PRÁCE";
+            this.btnWohManager.UseVisualStyleBackColor = true;
+            this.btnWohManager.Click += new System.EventHandler(this.btnWohManager_Click);
             // 
             // button6
             // 
@@ -99,8 +101,8 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
             this.Controls.Add(this.button6);
-            this.Controls.Add(this.button5);
-            this.Controls.Add(this.button4);
+            this.Controls.Add(this.btnWohManager);
+            this.Controls.Add(this.btnWorkTypes);
             this.Controls.Add(this.btnAContracts);
             this.Controls.Add(this.btnEmployees);
             this.Controls.Add(this.btnAUsers);
@@ -117,8 +119,8 @@
         private Button btnAUsers;
         private Button btnEmployees;
         private Button btnAContracts;
-        private Button button4;
-        private Button button5;
+        private Button btnWorkTypes;
+        private Button btnWohManager;
         private Button button6;
     }
 }

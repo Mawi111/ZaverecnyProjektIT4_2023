@@ -34,5 +34,17 @@ namespace Zaverecny_Projekt_Koukal
             aContractsManager aContractsManager = new aContractsManager();
             aContractsManager.Show();
         }
+
+        private void btnWorkTypes_Click(object sender, EventArgs e)
+        {
+            aWorkTypesManager aWorkTypesManager = new aWorkTypesManager();
+            aWorkTypesManager.Show();
+        }
+
+        private void btnWohManager_Click(object sender, EventArgs e)
+        {
+            aWorkHoursManager aWorkHoursManager = new aWorkHoursManager();
+            aWorkHoursManager.Show();
+        }
     }
 }
