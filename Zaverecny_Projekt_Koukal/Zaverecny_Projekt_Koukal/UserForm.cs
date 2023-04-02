@@ -12,9 +12,31 @@ namespace Zaverecny_Projekt_Koukal
 {
     public partial class UserForm : Form
     {
+        List<Contract> contracts;
+        List<User> users;
         public UserForm()
         {
             InitializeComponent();
+            contracts = SqlRepo.LoadContracts();
+            RefreshUC();
+        }
+
+        private void RefreshUC()
+        {
+            lvUContracts.Items.Clear();
+
+            foreach (var contract in contracts)
+            {
+                if (contract.Customer.Contains(txtSearch.Text))
+                {
+                    lvUContracts.Items.Add(new ListViewItem(new string[] { contract.IdContract.ToString(), contract.Customer, contract.Description }));
+                }
+            }
+        }
+
+        private void txtSearch_TextChanged(object sender, EventArgs e)
+        {
+            RefreshUC();
         }
     }
 }

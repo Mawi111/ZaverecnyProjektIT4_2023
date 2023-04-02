@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
+using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.StartPanel;
@@ -26,13 +28,13 @@ namespace Zaverecny_Projekt_Koukal
             connection.Open();
             
             SqlCommand cmd = connection.CreateCommand();
-            cmd.CommandText = "SELECT Username,Password,Role FROM Users WHERE Username=@username";
+            cmd.CommandText = "SELECT Username,Password,Role,IdEmployee FROM Users WHERE Username=@username";
             cmd.Parameters.AddWithValue("username", username);
             
             SqlDataReader reader = cmd.ExecuteReader();
             if (reader.Read())
             {
-                user = new User(reader["Username"].ToString(), reader["Password"].ToString(), Convert.ToInt32(reader["Role"]));
+                user = new User(reader["Username"].ToString(), Convert.ToInt32(reader["Role"]));
             }
             connection.Close();
             return user;
@@ -51,7 +53,7 @@ namespace Zaverecny_Projekt_Koukal
             List<User> listUsers = new List<User>();
             while (reader.Read())
             {
-                listUsers.Add(new User(Convert.ToInt32(reader["IdUser"]), reader["Username"].ToString(), reader["Password"].ToString(), Convert.ToInt32(reader["Role"]), Convert.ToInt32(reader["IdEmployee"])));
+                listUsers.Add(new User(Convert.ToInt32(reader["IdUser"]), reader["Username"].ToString(), Convert.ToInt32(reader["Role"]), Convert.ToInt32(reader["IdEmployee"])));
             }
             connection.Close();
             return listUsers;
@@ -68,20 +70,46 @@ namespace Zaverecny_Projekt_Koukal
             cmd.ExecuteNonQuery(); 
             connection.Close();
         }
-
+        
         public static void AddUser(string username, string password, int role, int idEmployee)
         {
             SqlConnection connection = new SqlConnection(connectionString);
             connection.Open();
 
+            HMACSHA512 hmac = new HMACSHA512();
+
             SqlCommand cmd = connection.CreateCommand();
-            cmd.CommandText = "INSERT INTO Users (Username,Password,Role,IdEmployee) VALUES (@username,@password,@role,@idEmployee)";
+            cmd.CommandText = "INSERT INTO Users (Username,PasswordHash,PasswordSalt,Role,IdEmployee) VALUES (@username,@hash,@salt,@role,@idEmployee)";
             cmd.Parameters.AddWithValue("username", username);
-            cmd.Parameters.AddWithValue("password", password);
+            cmd.Parameters.AddWithValue("hash", hmac.ComputeHash(Encoding.UTF8.GetBytes(password)));
+            cmd.Parameters.AddWithValue("salt", hmac.Key);
             cmd.Parameters.AddWithValue("role", role);
             cmd.Parameters.AddWithValue("idEmployee", idEmployee);
             cmd.ExecuteNonQuery(); 
             connection.Close();
+        }
+
+
+        public static User CheckLogin(string username, string password)
+        {
+            SqlConnection conn = new SqlConnection(connectionString);
+            conn.Open();
+            SqlCommand command = conn.CreateCommand();
+            command.CommandText = "SELECT * FROM Users WHERE Username=@name";
+            command.Parameters.AddWithValue("name", username);
+            SqlDataReader reader = command.ExecuteReader();
+            User user = null;
+            if (reader.Read())
+            {
+                HMACSHA512 hmac = new HMACSHA512((byte[])reader[3]);
+                if (hmac.ComputeHash(Encoding.UTF8.GetBytes(password)).SequenceEqual((byte[])reader[2]))
+                {
+                    user = new User(reader.GetInt32(0), reader.GetString(1), reader.GetInt32(4), reader.GetInt32(5));
+                }
+            }
+            reader.Close();
+            conn.Close();
+            return user;
         }
 
         public static void EditUser( int idUser,string username, string password, int role)
@@ -89,11 +117,14 @@ namespace Zaverecny_Projekt_Koukal
             SqlConnection connection = new SqlConnection(connectionString);
             connection.Open();
 
+            HMACSHA512 hmac = new HMACSHA512();
+
             SqlCommand cmd = connection.CreateCommand();
             cmd.CommandText = "UPDATE Users SET Username=@username,Password=@password,Role=@role WHERE IdUser=@idUser";
             cmd.Parameters.AddWithValue("idUser", idUser);
             cmd.Parameters.AddWithValue("username", username);
-            cmd.Parameters.AddWithValue("password", password);
+            cmd.Parameters.AddWithValue("hash", hmac.ComputeHash(Encoding.UTF8.GetBytes(password)));
+            cmd.Parameters.AddWithValue("salt", hmac.Key);
             cmd.Parameters.AddWithValue("role", role);
             cmd.ExecuteNonQuery(); 
             connection.Close();
@@ -293,7 +324,7 @@ namespace Zaverecny_Projekt_Koukal
             SqlDataReader reader = cmd.ExecuteReader();
             if (reader.Read())
             {
-                return new User(Convert.ToInt32(reader["IdUser"]), reader["Username"].ToString(), reader["Password"].ToString(), Convert.ToInt32(reader["Role"]), Convert.ToInt32(reader["IdEmployee"]));
+                return new User(Convert.ToInt32(reader["IdUser"]), reader["Username"].ToString(), Convert.ToInt32(reader["Role"]), Convert.ToInt32(reader["IdEmployee"]));
             }
             else
             {
@@ -418,7 +449,7 @@ namespace Zaverecny_Projekt_Koukal
             connection.Open();
 
             SqlCommand cmd = connection.CreateCommand();
-            cmd.CommandText = "UPDATE WorkHours SET Name=@name,Description=@description WHERE IdWorkType=@idWorkType";
+            cmd.CommandText = "UPDATE WorkHours SET IdEmployee=@idEmployee,IdConctract=@idConctract, IdWorkType=@idWorkType, Hours=@hours, InsertDate=@insertDate, InsertUser=@insertUser WHERE IdWorkHour=@idWorkHour";
             cmd.Parameters.AddWithValue("idEmployee", idEmloyee);
             cmd.Parameters.AddWithValue("idConctract", idConctract);
             cmd.Parameters.AddWithValue("idWorkType", idWorkType);
@@ -428,6 +459,9 @@ namespace Zaverecny_Projekt_Koukal
             cmd.ExecuteNonQuery();
             connection.Close();
         }
+
+        // Začátek UserForm metod a funkcí
+
 
     }
 }

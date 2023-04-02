@@ -29,9 +29,9 @@ namespace Zaverecny_Projekt_Koukal
 
             foreach (var user in users)
             {
-                if (user.Username.Contains(txtSearch.Text) || user.Password.Contains(txtSearch.Text))
+                if (user.Username.Contains(txtSearch.Text))
                 {
-                    lvUsers.Items.Add(new ListViewItem(new string[] { user.IdUser.ToString(), user.Username, user.Password, user.Role.ToString(), user.IdEmployee.ToString()}));
+                    lvUsers.Items.Add(new ListViewItem(new string[] { user.IdUser.ToString(), user.Username, user.Role.ToString(), user.IdEmployee.ToString()}));
                 }
             }
         }

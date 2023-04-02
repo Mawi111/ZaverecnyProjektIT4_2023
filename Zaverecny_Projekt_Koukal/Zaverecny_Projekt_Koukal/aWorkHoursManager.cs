@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.VisualBasic.ApplicationServices;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -67,7 +68,9 @@ namespace Zaverecny_Projekt_Koukal
 
         private void btnEditWoH_Click(object sender, EventArgs e)
         {
-
+            new aWorkHoursEdit(workHours[lvWorkHours.SelectedIndices[0]]).Show();
+            workHours = SqlRepo.LoadWorkHours();
+            RefreshWoH();    
         }
     }
 }

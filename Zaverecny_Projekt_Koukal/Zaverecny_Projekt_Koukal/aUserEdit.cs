@@ -19,7 +19,6 @@ namespace Zaverecny_Projekt_Koukal
             User = user;
             
             txtUsername.Text = user.Username;
-            txtPassword.Text = user.Password;
             txtRole.Text = user.Role.ToString();
         }
 

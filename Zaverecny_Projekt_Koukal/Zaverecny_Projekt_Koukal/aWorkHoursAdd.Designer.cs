@@ -48,7 +48,7 @@
             this.btnOk.Location = new System.Drawing.Point(123, 383);
             this.btnOk.Name = "btnOk";
             this.btnOk.Size = new System.Drawing.Size(119, 39);
-            this.btnOk.TabIndex = 32;
+            this.btnOk.TabIndex = 34;
             this.btnOk.Text = "PŘIDEJ";
             this.btnOk.UseVisualStyleBackColor = true;
             this.btnOk.Click += new System.EventHandler(this.btnOk_Click);
@@ -102,7 +102,7 @@
             this.txtWorkType.Location = new System.Drawing.Point(91, 160);
             this.txtWorkType.Name = "txtWorkType";
             this.txtWorkType.Size = new System.Drawing.Size(184, 23);
-            this.txtWorkType.TabIndex = 33;
+            this.txtWorkType.TabIndex = 30;
             // 
             // label4
             // 
@@ -119,7 +119,7 @@
             this.txtHours.Location = new System.Drawing.Point(91, 220);
             this.txtHours.Name = "txtHours";
             this.txtHours.Size = new System.Drawing.Size(184, 23);
-            this.txtHours.TabIndex = 35;
+            this.txtHours.TabIndex = 31;
             // 
             // label5
             // 
@@ -146,14 +146,14 @@
             this.txtUser.Location = new System.Drawing.Point(91, 340);
             this.txtUser.Name = "txtUser";
             this.txtUser.Size = new System.Drawing.Size(184, 23);
-            this.txtUser.TabIndex = 39;
+            this.txtUser.TabIndex = 33;
             // 
             // dtDate
             // 
             this.dtDate.Location = new System.Drawing.Point(91, 283);
             this.dtDate.Name = "dtDate";
             this.dtDate.Size = new System.Drawing.Size(184, 23);
-            this.dtDate.TabIndex = 41;
+            this.dtDate.TabIndex = 32;
             // 
             // aWorkHoursAdd
             // 
