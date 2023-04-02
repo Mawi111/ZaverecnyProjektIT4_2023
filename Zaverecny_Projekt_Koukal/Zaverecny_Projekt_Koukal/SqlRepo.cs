@@ -281,14 +281,14 @@ namespace Zaverecny_Projekt_Koukal
 
         // metody na select user, employee, contract a worktype podle id
 
-        public static User GetUserById(int id)
+        public static User GetUserById(int idUser)
         {
             SqlConnection connection = new SqlConnection(connectionString);
             connection.Open();
 
             SqlCommand cmd = connection.CreateCommand();
             cmd.CommandText = "SELECT * FROM Users WHERE IdUser=@id";
-            cmd.Parameters.AddWithValue("id", id);
+            cmd.Parameters.AddWithValue("id", idUser);
 
             SqlDataReader reader = cmd.ExecuteReader();
             if (reader.Read())
@@ -301,14 +301,14 @@ namespace Zaverecny_Projekt_Koukal
             }
         }
 
-        public static Employee GetEmployeeById(int id)
+        public static Employee GetEmployeeById(int idEmployee)
         {
             SqlConnection connection = new SqlConnection(connectionString);
             connection.Open();
 
             SqlCommand cmd = connection.CreateCommand();
             cmd.CommandText = "SELECT * FROM Employees WHERE IdEmployee=@id";
-            cmd.Parameters.AddWithValue("id", id);
+            cmd.Parameters.AddWithValue("id", idEmployee);
 
             SqlDataReader reader = cmd.ExecuteReader();
             if (reader.Read())
@@ -321,14 +321,14 @@ namespace Zaverecny_Projekt_Koukal
             }
         }
 
-        public static Contract GetContractById(int id)
+        public static Contract GetContractById(int idContract)
         {
             SqlConnection connection = new SqlConnection(connectionString);
             connection.Open();
 
             SqlCommand cmd = connection.CreateCommand();
             cmd.CommandText = "SELECT * FROM Contracts WHERE IdContract=@id";
-            cmd.Parameters.AddWithValue("id", id);
+            cmd.Parameters.AddWithValue("id", idContract);
 
             SqlDataReader reader = cmd.ExecuteReader();
             if (reader.Read())
@@ -341,14 +341,14 @@ namespace Zaverecny_Projekt_Koukal
             }
         }
 
-        public static WorkType GetWorkTypeById(int id)
+        public static WorkType GetWorkTypeById(int idWorkType)
         {
             SqlConnection connection = new SqlConnection(connectionString);
             connection.Open();
 
             SqlCommand cmd = connection.CreateCommand();
             cmd.CommandText = "SELECT * FROM WorkTypes WHERE IdWorkType=@id";
-            cmd.Parameters.AddWithValue("id", id);
+            cmd.Parameters.AddWithValue("id", idWorkType);
 
             SqlDataReader reader = cmd.ExecuteReader();
             if (reader.Read())
@@ -365,6 +365,7 @@ namespace Zaverecny_Projekt_Koukal
 
         public static List<WorkHours> LoadWorkHours()
         {
+            
             SqlConnection connection = new SqlConnection(connectionString);
             connection.Open();
 
@@ -375,10 +376,58 @@ namespace Zaverecny_Projekt_Koukal
             List<WorkHours> listWorkHours = new List<WorkHours>();
             while (reader.Read())
             {
-                listWorkHours.Add(new WorkHours((int)reader["IdWorkHours"], GetEmployeeById((int)reader["IdEmployee"]), GetContractById((int)reader["IdConctract"]), GetWorkTypeById((int)reader["IdWorkType"]), (int)reader["Hours"], Convert.ToDateTime(reader["InsertDate"]), GetUserById((int)reader["InsertUser"])));
+                listWorkHours.Add(new WorkHours((int)reader["IdWorkHour"], ((int)reader["IdEmployee"]), ((int)reader["IdConctract"]), ((int)reader["IdWorkType"]), (int)reader["Hours"], Convert.ToDateTime(reader["InsertDate"]), ((int)reader["InsertUser"])));
+                //listWorkHours.Add(new WorkHours(Convert.ToInt32(reader["IdWorkHour"])), (Convert.ToInt32(reader["IdEmployee"])), (Convert.ToInt32(reader["IdContract"])), (Convert.ToInt32(reader["IdWorkType"])), (Convert.ToInt32(reader["Hours"])), (Convert.ToInt32(reader["InsertDate"])), (Convert.ToInt32(reader["IdUser"])));
             }
             connection.Close();
             return listWorkHours;
         }
+
+        public static void DeleteWorkHours(int idWorkHour)
+        {
+            SqlConnection connection = new SqlConnection(connectionString);
+            connection.Open();
+
+            SqlCommand cmd = connection.CreateCommand();
+            cmd.CommandText = "DELETE FROM WorkHours WHERE IdWorkHour=@idWorkHour";
+            cmd.Parameters.AddWithValue("idWorkHour", idWorkHour); // ochrana SQL insectionu 
+            cmd.ExecuteNonQuery();
+            connection.Close();
+        }
+
+        public static void AddWorkHours(int idEmloyee, int idConctract, int idWorkType, int hours, DateTime insertDate, int insertUser)
+        {
+            SqlConnection connection = new SqlConnection(connectionString);
+            connection.Open();
+
+            SqlCommand cmd = connection.CreateCommand();
+            cmd.CommandText = "INSERT INTO WorkHours (IdEmployee, IdConctract, IdWorkType, Hours, InsertDate, InsertUser) VALUES (@idEmployee,@idConctract,@idWorkType,@hours,@insertDate,@insertUser)";
+            cmd.Parameters.AddWithValue("idEmployee", idEmloyee);
+            cmd.Parameters.AddWithValue("idConctract", idConctract);
+            cmd.Parameters.AddWithValue("idWorkType", idWorkType);
+            cmd.Parameters.AddWithValue("hours", hours);
+            cmd.Parameters.AddWithValue("insertDate", insertDate);
+            cmd.Parameters.AddWithValue("insertUser", insertUser);
+            cmd.ExecuteNonQuery();
+            connection.Close();
+        }
+
+        public static void EditWorkHours(int idEmloyee, int idConctract, int idWorkType, int hours, DateTime insertDate, int insertUser)
+        {
+            SqlConnection connection = new SqlConnection(connectionString);
+            connection.Open();
+
+            SqlCommand cmd = connection.CreateCommand();
+            cmd.CommandText = "UPDATE WorkHours SET Name=@name,Description=@description WHERE IdWorkType=@idWorkType";
+            cmd.Parameters.AddWithValue("idEmployee", idEmloyee);
+            cmd.Parameters.AddWithValue("idConctract", idConctract);
+            cmd.Parameters.AddWithValue("idWorkType", idWorkType);
+            cmd.Parameters.AddWithValue("hours", hours);
+            cmd.Parameters.AddWithValue("insertDate", insertDate);
+            cmd.Parameters.AddWithValue("insertUser", insertUser);
+            cmd.ExecuteNonQuery();
+            connection.Close();
+        }
+
     }
 }

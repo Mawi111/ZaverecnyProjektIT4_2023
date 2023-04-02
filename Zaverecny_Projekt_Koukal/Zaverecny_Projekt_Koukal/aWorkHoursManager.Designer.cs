@@ -39,6 +39,7 @@
             this.columnHeader4 = new System.Windows.Forms.ColumnHeader();
             this.columnHeader5 = new System.Windows.Forms.ColumnHeader();
             this.columnHeader6 = new System.Windows.Forms.ColumnHeader();
+            this.columnHeader7 = new System.Windows.Forms.ColumnHeader();
             this.SuspendLayout();
             // 
             // txtSearch
@@ -48,6 +49,7 @@
             this.txtSearch.PlaceholderText = "Hledat";
             this.txtSearch.Size = new System.Drawing.Size(156, 23);
             this.txtSearch.TabIndex = 16;
+            this.txtSearch.TextChanged += new System.EventHandler(this.txtSearch_TextChanged);
             // 
             // btnAddWoH
             // 
@@ -57,6 +59,7 @@
             this.btnAddWoH.TabIndex = 15;
             this.btnAddWoH.Text = "PŘIDAT";
             this.btnAddWoH.UseVisualStyleBackColor = true;
+            this.btnAddWoH.Click += new System.EventHandler(this.btnAddWoH_Click);
             // 
             // btnEditWoH
             // 
@@ -67,6 +70,7 @@
             this.btnEditWoH.TabIndex = 14;
             this.btnEditWoH.Text = "UPRAVIT";
             this.btnEditWoH.UseVisualStyleBackColor = true;
+            this.btnEditWoH.Click += new System.EventHandler(this.btnEditWoH_Click);
             // 
             // btnDeleteWoH
             // 
@@ -77,6 +81,7 @@
             this.btnDeleteWoH.TabIndex = 13;
             this.btnDeleteWoH.Text = "SMAZAT";
             this.btnDeleteWoH.UseVisualStyleBackColor = true;
+            this.btnDeleteWoH.Click += new System.EventHandler(this.btnDeleteWoH_Click);
             // 
             // lvWorkHours
             // 
@@ -86,7 +91,8 @@
             this.columnHeader3,
             this.columnHeader4,
             this.columnHeader5,
-            this.columnHeader6});
+            this.columnHeader6,
+            this.columnHeader7});
             this.lvWorkHours.FullRowSelect = true;
             this.lvWorkHours.GridLines = true;
             this.lvWorkHours.Location = new System.Drawing.Point(12, 42);
@@ -95,35 +101,40 @@
             this.lvWorkHours.TabIndex = 12;
             this.lvWorkHours.UseCompatibleStateImageBehavior = false;
             this.lvWorkHours.View = System.Windows.Forms.View.Details;
+            this.lvWorkHours.SelectedIndexChanged += new System.EventHandler(this.lvWorkHours_SelectedIndexChanged);
             // 
             // columnHeader1
             // 
-            this.columnHeader1.Text = "Pracovní ID";
-            this.columnHeader1.Width = 110;
+            this.columnHeader1.Text = "ID Odp. hodin";
+            this.columnHeader1.Width = 75;
             // 
             // columnHeader2
             // 
-            this.columnHeader2.Text = "Jméno";
+            this.columnHeader2.Text = "ID Zaměstnance";
             this.columnHeader2.Width = 100;
             // 
             // columnHeader3
             // 
-            this.columnHeader3.Text = "Příjmení";
-            this.columnHeader3.Width = 100;
+            this.columnHeader3.Text = "ID Kontraktu";
+            this.columnHeader3.Width = 80;
             // 
             // columnHeader4
             // 
-            this.columnHeader4.Text = "Datum narození";
-            this.columnHeader4.Width = 100;
+            this.columnHeader4.Text = "ID Práce ";
             // 
             // columnHeader5
             // 
-            this.columnHeader5.Text = "Email";
-            this.columnHeader5.Width = 75;
+            this.columnHeader5.Text = "Odp. hodiny";
+            this.columnHeader5.Width = 80;
             // 
             // columnHeader6
             // 
-            this.columnHeader6.Text = "Telefon";
+            this.columnHeader6.Text = "Datum";
+            // 
+            // columnHeader7
+            // 
+            this.columnHeader7.Text = "ID Uživatele";
+            this.columnHeader7.Width = 75;
             // 
             // aWorkHoursManager
             // 
@@ -156,5 +167,6 @@
         private ColumnHeader columnHeader4;
         private ColumnHeader columnHeader5;
         private ColumnHeader columnHeader6;
+        private ColumnHeader columnHeader7;
     }
 }

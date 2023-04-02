@@ -20,7 +20,7 @@ namespace Zaverecny_Projekt_Koukal
         private void btnAUsers_Click(object sender, EventArgs e)
         {
             aUsersManager aUsersManager = new aUsersManager();  
-            aUsersManager.ShowDialog();
+            aUsersManager.Show();
         }
 
         private void btnEmployees_Click(object sender, EventArgs e)

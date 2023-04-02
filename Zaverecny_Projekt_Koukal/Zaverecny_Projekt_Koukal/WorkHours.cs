@@ -8,17 +8,17 @@ namespace Zaverecny_Projekt_Koukal
 {
     public class WorkHours
     {
-        public int IdWorkHours { get; set; }
-        public Employee Employee { get; set; }
-        public Contract Contract { get; set; }
-        public WorkType WorkType { get; set; }
+        public int IdWorkHour { get; set; }
+        public int Employee { get; set; }
+        public int Contract { get; set; }
+        public int WorkType { get; set; }
         public int Hours { get; set; }
         public DateTime InsertDate { get; set; }
-        public User InsertUser { get; set; }
+        public int InsertUser { get; set; }
 
-        public WorkHours(int idWorkHours, Employee employee, Contract contract, WorkType workType, int hours, DateTime insertDate, User insertUser)
+        public WorkHours(int idWorkHour, int employee, int contract, int workType, int hours, DateTime insertDate, int insertUser)
         {
-            IdWorkHours = idWorkHours;
+            IdWorkHour = idWorkHour;
             Employee = employee;
             Contract = contract;
             WorkType = workType;
@@ -27,13 +27,13 @@ namespace Zaverecny_Projekt_Koukal
             InsertUser = insertUser;
         }
 
-        public WorkHours(Employee employee, Contract contract, WorkType workType, int hours, User insertUser)
+        public WorkHours(int employee, int contract, int workType, int hours, DateTime insertDate, int insertUser)
         {
             Employee = employee;
             Contract = contract;
             WorkType = workType;
             Hours = hours;
-            InsertDate = DateTime.Now;
+            InsertDate = insertDate;
             InsertUser = insertUser;
         }
     }
