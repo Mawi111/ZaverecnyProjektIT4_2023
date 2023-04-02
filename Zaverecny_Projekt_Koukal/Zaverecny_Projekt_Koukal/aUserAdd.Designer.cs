@@ -131,9 +131,10 @@
             this.Controls.Add(this.txtRole);
             this.Controls.Add(this.txtPassword);
             this.Controls.Add(this.txtUsername);
+            this.MaximizeBox = false;
             this.Name = "aUserAdd";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "aUserAdd";
+            this.Text = "PŘÍDANÍ UŽIVATEL";
             this.ResumeLayout(false);
             this.PerformLayout();
 

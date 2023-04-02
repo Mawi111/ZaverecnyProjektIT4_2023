@@ -111,9 +111,10 @@
             this.Controls.Add(this.txtPassword);
             this.Controls.Add(this.txtUsername);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
+            this.MaximizeBox = false;
             this.Name = "aUserEdit";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "aUserEdit";
+            this.Text = "ÚPRAVA ZAMĚSTNANCŮ";
             this.ResumeLayout(false);
             this.PerformLayout();
 

@@ -153,9 +153,10 @@
             this.Controls.Add(this.txtLastname);
             this.Controls.Add(this.txtFirstname);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
+            this.MaximizeBox = false;
             this.Name = "aEmployeeAdd";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "aEmployeeAdd";
+            this.Text = "PŘIDÁNÍ ZAMĚSTNANCE";
             this.ResumeLayout(false);
             this.PerformLayout();
 

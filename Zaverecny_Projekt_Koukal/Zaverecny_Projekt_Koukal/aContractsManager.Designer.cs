@@ -120,9 +120,10 @@
             this.Controls.Add(this.btnEditCo);
             this.Controls.Add(this.btnDeleteCo);
             this.Controls.Add(this.lvContracts);
+            this.MaximizeBox = false;
             this.Name = "aContractsManager";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "aContractsManager";
+            this.Text = "SPRÁVA KONTRAKTU";
             this.ResumeLayout(false);
             this.PerformLayout();
 

@@ -146,9 +146,10 @@
             this.Controls.Add(this.btnEditWoH);
             this.Controls.Add(this.btnDeleteWoH);
             this.Controls.Add(this.lvWorkHours);
+            this.MaximizeBox = false;
             this.Name = "aWorkHoursManager";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "aWorkHoursManager";
+            this.Text = "SPRÁVA ODP. HODIN";
             this.ResumeLayout(false);
             this.PerformLayout();
 

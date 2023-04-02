@@ -141,9 +141,10 @@
             this.Controls.Add(this.btnDeleteEm);
             this.Controls.Add(this.lvEmployees);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
+            this.MaximizeBox = false;
             this.Name = "aEmployeesManager";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "aEmployeesManager";
+            this.Text = "SPRÁVA ZAMĚSTNANCŮ";
             this.ResumeLayout(false);
             this.PerformLayout();
 

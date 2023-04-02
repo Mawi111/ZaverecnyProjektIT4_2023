@@ -90,9 +90,10 @@
             this.Controls.Add(this.label1);
             this.Controls.Add(this.txtDescription);
             this.Controls.Add(this.txtName);
+            this.MaximizeBox = false;
             this.Name = "aWorkTypeEdit";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "aWorkTypeEdit";
+            this.Text = "TYP PRÁCE ÚPRAVA";
             this.ResumeLayout(false);
             this.PerformLayout();
 

@@ -31,7 +31,6 @@
             this.lvUsers = new System.Windows.Forms.ListView();
             this.columnHeader1 = new System.Windows.Forms.ColumnHeader();
             this.columnHeader2 = new System.Windows.Forms.ColumnHeader();
-            this.columnHeader3 = new System.Windows.Forms.ColumnHeader();
             this.columnHeader4 = new System.Windows.Forms.ColumnHeader();
             this.columnHeader5 = new System.Windows.Forms.ColumnHeader();
             this.btnDeleteUser = new System.Windows.Forms.Button();
@@ -46,7 +45,6 @@
             this.lvUsers.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.columnHeader1,
             this.columnHeader2,
-            this.columnHeader3,
             this.columnHeader4,
             this.columnHeader5});
             this.lvUsers.FullRowSelect = true;
@@ -61,18 +59,13 @@
             // 
             // columnHeader1
             // 
-            this.columnHeader1.Text = "ID";
-            this.columnHeader1.Width = 40;
+            this.columnHeader1.Text = "Uživatelské ID";
+            this.columnHeader1.Width = 90;
             // 
             // columnHeader2
             // 
             this.columnHeader2.Text = "Jméno";
             this.columnHeader2.Width = 100;
-            // 
-            // columnHeader3
-            // 
-            this.columnHeader3.Text = "Heslo";
-            this.columnHeader3.Width = 100;
             // 
             // columnHeader4
             // 
@@ -82,7 +75,7 @@
             // columnHeader5
             // 
             this.columnHeader5.Text = "Pracovní ID";
-            this.columnHeader5.Width = 75;
+            this.columnHeader5.Width = 80;
             // 
             // btnDeleteUser
             // 
@@ -150,9 +143,10 @@
             this.Controls.Add(this.btnDeleteUser);
             this.Controls.Add(this.lvUsers);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
+            this.MaximizeBox = false;
             this.Name = "aUsersManager";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "aUsersManager";
+            this.Text = "SPRÁVA UŽIVATELŮ";
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -168,7 +162,6 @@
         private Label label2;
         private ColumnHeader columnHeader1;
         private ColumnHeader columnHeader2;
-        private ColumnHeader columnHeader3;
         private ColumnHeader columnHeader4;
         private ColumnHeader columnHeader5;
     }

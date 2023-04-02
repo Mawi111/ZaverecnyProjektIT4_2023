@@ -90,9 +90,10 @@
             this.Controls.Add(this.label1);
             this.Controls.Add(this.txtDescription);
             this.Controls.Add(this.txtName);
+            this.MaximizeBox = false;
             this.Name = "aWorkTypeAdd";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "aWorkTypeAdd";
+            this.Text = "TYP PRÁCE PŘIDÁNÍ";
             this.ResumeLayout(false);
             this.PerformLayout();
 

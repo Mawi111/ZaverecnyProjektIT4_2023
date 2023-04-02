@@ -90,9 +90,10 @@
             this.Controls.Add(this.label1);
             this.Controls.Add(this.txtDescription);
             this.Controls.Add(this.txtCustomer);
+            this.MaximizeBox = false;
             this.Name = "aContractEdit";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "aContractEdit";
+            this.Text = "ÚPRAVA KONTRAKTU";
             this.ResumeLayout(false);
             this.PerformLayout();
 

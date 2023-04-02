@@ -152,9 +152,10 @@
             this.Controls.Add(this.txtEmail);
             this.Controls.Add(this.txtLastname);
             this.Controls.Add(this.txtFirstname);
+            this.MaximizeBox = false;
             this.Name = "aEditEmployee";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "aEditEmployee";
+            this.Text = "UPRÁVA ZAMĚSTNANCŮ";
             this.ResumeLayout(false);
             this.PerformLayout();
 

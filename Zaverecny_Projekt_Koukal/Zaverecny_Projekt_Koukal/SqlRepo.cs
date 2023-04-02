@@ -12,7 +12,7 @@ namespace Zaverecny_Projekt_Koukal
 {
     public class SqlRepo
     {
-        public static string connectionString = @"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=FirmaDB;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False";
+        public static string connectionString = @"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=C:\GITHUB\ZAVERECNYPROJEKTIT4_2023\DBO\FIRMADB.MDF;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False";
 
         public SqlRepo()
         {

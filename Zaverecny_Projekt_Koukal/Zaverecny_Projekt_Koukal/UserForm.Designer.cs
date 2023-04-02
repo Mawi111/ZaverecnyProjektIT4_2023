@@ -164,6 +164,7 @@
             this.Controls.Add(this.txtSearch);
             this.Controls.Add(this.lvUContracts);
             this.Controls.Add(this.label1);
+            this.MaximizeBox = false;
             this.Name = "UserForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "UŽIVATEL";

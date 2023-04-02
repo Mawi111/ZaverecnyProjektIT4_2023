@@ -120,9 +120,10 @@
             this.Controls.Add(this.btnEditWoT);
             this.Controls.Add(this.btnDeleteWoT);
             this.Controls.Add(this.lvWorkTypes);
+            this.MaximizeBox = false;
             this.Name = "aWorkTypesManager";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "aWorkTypesManager";
+            this.Text = "SPRÁVA TYPŮ PRÁCE";
             this.ResumeLayout(false);
             this.PerformLayout();
 

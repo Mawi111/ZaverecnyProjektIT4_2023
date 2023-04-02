@@ -173,9 +173,10 @@
             this.Controls.Add(this.label1);
             this.Controls.Add(this.txtContract);
             this.Controls.Add(this.txtEmployee);
+            this.MaximizeBox = false;
             this.Name = "aWorkHoursAdd";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "aWorkHoursAdd";
+            this.Text = "PŘÍDÁNÍ ODP. HODIN";
             this.ResumeLayout(false);
             this.PerformLayout();
 

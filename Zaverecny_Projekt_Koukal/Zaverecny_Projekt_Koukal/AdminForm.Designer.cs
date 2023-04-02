@@ -107,6 +107,7 @@
             this.Controls.Add(this.btnEmployees);
             this.Controls.Add(this.btnAUsers);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
+            this.MaximizeBox = false;
             this.Name = "AdminForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "AMINISTRÁTOR";
