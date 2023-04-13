@@ -12,7 +12,7 @@ namespace Zaverecny_Projekt_Koukal
 {
     public class SqlRepo
     {
-        public static string connectionString = @"";
+        public static string connectionString = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\GitHub\ZaverecnyProjektIT4_2023\DBO\FirmaDB.mdf;Integrated Security=True;Connect Timeout=30";
 
         public SqlRepo()
         {
